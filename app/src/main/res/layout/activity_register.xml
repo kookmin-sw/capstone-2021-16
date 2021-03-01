@@ -9,8 +9,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="메인 화면"
-        android:textSize="80dp"/>
+        android:text="약속등록 화면"
+        android:textSize="50dp"/>
 
 
     <LinearLayout
@@ -18,11 +18,6 @@
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/regBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="약속 등록"/>
 
 
     </LinearLayout>
