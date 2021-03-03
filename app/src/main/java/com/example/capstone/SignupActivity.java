@@ -46,13 +46,13 @@ public class SignupActivity extends AppCompatActivity {
       String password = ((EditText)findViewById(R.id.signup_password)).getText().toString();
       String passwordCheck = ((EditText)findViewById(R.id.signup_password_check)).getText().toString();
       final String name = ((EditText)findViewById(R.id.signup_name)).getText().toString();
-      if (email.length()>0 && password.length()>0 && passwordCheck.length()>0 && name.length()>0) //null 값 체크
+      if (email.length()>0 && password.length()>0 && passwordCheck.length()>0 && name.length()>0) //null 값 체크 ( 3/3 )
       {
-          if(password.equals(passwordCheck)){
+          if(password.equals(passwordCheck)){ // Password 일치하는치 Check ( 3/3 )
               mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                   @Override
                   public void onComplete(@NonNull Task<AuthResult> task) {
-                      if(task.isSuccessful()){ // 회원가입 성공시
+                      if(task.isSuccessful()){ // 회원가입 성공시 User Model을 통한 데이터 저장 ( 3/3 )
                           Toast.makeText(SignupActivity.this, "회원가입이 성공했습니다.", Toast.LENGTH_SHORT).show();
                           FirebaseUser user = mAuth.getCurrentUser();
                           String uid = user.getUid();

@@ -28,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            // 클릭한 id 값에 따라 메소드 실행 ( 3/3 )
             switch (v.getId()){
                 case R.id.login_btn:
                     login();
@@ -35,7 +36,6 @@ public class LoginActivity extends AppCompatActivity {
                 case R.id.login_signup_btn:
                     Intent intent = new Intent(LoginActivity.this,SignupActivity.class);
                     startActivity(intent);
-                    finish();
                     break;
             }
         }
@@ -44,19 +44,18 @@ public class LoginActivity extends AppCompatActivity {
     private void login(){
         final String email = ((EditText)findViewById(R.id.login_email)).getText().toString();
         String password = ((EditText)findViewById(R.id.login_password)).getText().toString();
-        if(email.length()>0&&password.length()>0) //null 값 체크
+        if(email.length()>0&&password.length()>0) //null 값 체크 ( 3/3 )
         {
             mAuth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                FirebaseUser user =mAuth.getCurrentUser();
                                 Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                                 startActivity(intent);
                                 finish();
                             } else {
-                                //로그인 실패시
+                                //로그인 실패시 ( 3/3 )
                                 Toast.makeText(LoginActivity.this, "아이디와 비밀번호가 정확하지 않습니다.",
                                         Toast.LENGTH_SHORT).show();
                             }
