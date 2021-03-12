@@ -1,4 +1,8 @@
+import 'package:app/pages/addpromise.dart';
+import 'package:app/pages/calendar.dart';
+import 'package:app/pages/friends.dart';
 import 'package:app/pages/home.dart';
+import 'package:app/pages/profile.dart';
 import 'package:flutter/material.dart';
 
 class App extends StatefulWidget {
@@ -27,12 +31,17 @@ class _AppState extends State<App> {
         },
         child: Row(
           children: [
-            Image.asset('assets/images/appicon.png'),
             SizedBox(width: 5), //Padding이랑 같은 효과
             Text("Appname"),
           ],
         ),
-      ), // 가운데 이름
+      ),
+      actions: [
+        IconButton(
+            onPressed: () {}, icon: Image.asset("assets/images/message.png")),
+        IconButton(
+            onPressed: () {}, icon: Image.asset("assets/images/bell.png"))
+      ], // 가운데 이름
     );
   }
 
@@ -43,16 +52,16 @@ class _AppState extends State<App> {
         return Home(); // 홈 화면
         break;
       case 1:
-        return Container(); // 달력페이
+        return Friends(); // 친구 목록 페이지
         break;
       case 2:
-        return Container();
+        return AddPromise(); // 약속추가페이지
         break;
       case 3:
-        return Container();
+        return Calendar(); // 캘린더 페이지
         break;
       case 4:
-        return Container();
+        return Profile(); // 프로필 페이지
         break;
     }
   }
@@ -79,9 +88,9 @@ class _AppState extends State<App> {
         selectedLabelStyle: TextStyle(color: Colors.black),
         items: [
           _bottomNavigationBarItem("home", "홈"),
-          _bottomNavigationBarItem("calendar", "달력"),
+          _bottomNavigationBarItem("friends", "친구"),
           _bottomNavigationBarItem("plus", "약속추가"),
-          _bottomNavigationBarItem("bell", "알림"),
+          _bottomNavigationBarItem("calendar", "알림"),
           _bottomNavigationBarItem("profile", "프로필"),
         ]);
   }
