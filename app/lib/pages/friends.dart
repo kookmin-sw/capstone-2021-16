@@ -40,13 +40,13 @@ class _FriendsState extends State<Friends> {
                   fontSize: 20
               ),),
 
-            trailing: Icon(   // 하트 이모티콘
+            //trailing: Icon(   // 하트 이모티콘
               //already ? Icons.favorite :
-              Icons.favorite_border,
-              color: already ? Colors.red : null,
-            ),
+              //Icons.favorite_border,
+              //color: already ? Colors.red : null,
+            //),
 
-            onTap: () {
+            /*onTap: () {
               setState(() {
                 if(already) {
                   _data.remove(context);
@@ -55,6 +55,8 @@ class _FriendsState extends State<Friends> {
                 }
               });
             },
+
+             */
           );
         }
     );
