@@ -2,6 +2,8 @@ import 'package:project1/pages/addpromise.dart';
 import 'package:project1/pages/calendar.dart';
 import 'package:project1/pages/friends.dart';
 import 'package:project1/pages/home.dart';
+import 'package:project1/pages/message.dart';
+import 'package:project1/pages/notice.dart';
 import 'package:project1/pages/profile.dart';
 import 'package:flutter/material.dart';
 
@@ -38,9 +40,19 @@ class _AppState extends State<App> {
       ),
       actions: [
         IconButton(
-            onPressed: () {}, icon: Image.asset("assets/images/message.png")),
+            onPressed: () {
+             Navigator.push(
+               context,
+               MaterialPageRoute(builder: (context) => Message()), // Move to Message
+             );
+              }, icon: Image.asset('assets/images/message.png')),
         IconButton(
-            onPressed: () {}, icon: Image.asset("assets/images/bell.png"))
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Notice()), // Move to Notice
+              );
+            }, icon: Image.asset('assets/images/bell.png'))
       ], // 가운데 이름
     );
   }
@@ -69,7 +81,7 @@ class _AppState extends State<App> {
   BottomNavigationBarItem _bottomNavigationBarItem(
       String iconName, String label) {
     return BottomNavigationBarItem(
-      icon: Image.asset("assets/images/${iconName}.png"),
+      icon: Image.asset('assets/images/${iconName}.png'),
       label: label,
     );
   }
