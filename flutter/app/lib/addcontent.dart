@@ -35,7 +35,7 @@ class _AddContentApp extends State<AddContentApp> {
                 padding: EdgeInsets.all(10),
                 child: TextField(
                   controller: titleController,
-                  decoration: InputDecoration(labelText: '약속 아름'),
+                  decoration: InputDecoration(labelText: '약속 이름'),
                 ),
               ),
               Padding(
@@ -53,7 +53,7 @@ class _AddContentApp extends State<AddContentApp> {
                      );
                   Navigator.of(context).pop(content);
                 },
-                child: Text('저장하기'),
+                child: Text('추가하기'),
               )
             ],
           ),
