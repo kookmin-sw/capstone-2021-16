@@ -14,13 +14,13 @@
 
 **기능** 
 
-:lock:로그인을 통한 개인별 캘린더 약속 관리
+:lock: 로그인을 통한 개인별 캘린더 약속 관리
 
-:couple:구독리스트에 친구 추가
+:couple: 구독리스트에 친구 추가
 
-:calendar:친구 캘린더에서 약속 신청
+:calendar: 친구 캘린더에서 약속 신청
 
-:pushpin:기타 추가 예정
+:pushpin: 기타 추가 예정
 
 <br>
 
@@ -31,7 +31,7 @@
 
 **최종 산출물**
 
-:iphone:android, ios
+:iphone: android, ios
 
 <br>
 <br>
