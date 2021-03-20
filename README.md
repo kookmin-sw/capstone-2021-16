@@ -24,7 +24,8 @@
 
 <br>
 
-**기술**<br>
+**기술**
+
 :computer: Flutter, Dart, Firebase
 
 <br>
