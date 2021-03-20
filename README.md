@@ -43,24 +43,21 @@
      
      
    이선용
-     Student ID : 20163139 
-     Role : Front-End 개발, 메인페이지 총괄
+   Student ID : 20163139 
+   Role : Front-End 개발, 메인페이지 총괄
    
    
    이주윤
-     Student ID : 20163145 
-     
-     
-     Role : API개발, DB 설계 및 구현
+   Student ID : 20163145 
+   Role : API개발, DB 설계 및 구현
    
    이헌수 
-   
-     Student ID : 20163147 
-     Role : Front-End 개발
+   Student ID : 20163147 
+   Role : Front-End 개발
      
    함석민 
-     Student ID : 20163174 
-     Role : 팀장, Front-End 개발
+   Student ID : 20163174 
+   Role : 팀장, Front-End 개발
 
 ### 4. 사용법
 
