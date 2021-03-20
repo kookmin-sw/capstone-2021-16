@@ -1,6 +1,6 @@
 **팀페이지 주소** -> 2021년 16조 https://kookmin-sw.github.io/capstone-2021-16/
 
-## 팀소개 및 페이지를 꾸며주세요.
+## APPNAME
 
 ### 1. 프로젝트 소개
 
@@ -25,9 +25,9 @@
 <br>
 
 **기술**
-- Flutter
-- Dart
-- Firebase
+-Flutter<br>
+-Dart<br>
+-Firebase
 
 <br>
 
