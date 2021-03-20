@@ -14,10 +14,13 @@
 
 **기능** 
 
-- 로그인을 통한 개인별 캘린더 약속 관리
-- 구독리스트에 친구 추가
-- 친구 캘린더에서 시간별 약속 신청
-- 기타 추가 예정
+:lock:로그인을 통한 개인별 캘린더 약속 관리
+
+:couple:구독리스트에 친구 추가
+
+:calendar:친구 캘린더에서 약속 신청
+
+:pushpin:기타 추가 예정
 
 <br>
 
@@ -29,9 +32,9 @@
 
 <br>
 
-**최종산출물**
+**최종 산출물**
 
-android, ios
+:iphone:android, ios
 
 <br>
 <br>
@@ -54,35 +57,35 @@ android, ios
 
   <br>
 
-   **김현서**   
+##### :point_right:**김현서**   
    Student ID : 20175161   
    Role : UI/UX 디자인, API개발
   <br>   
   <br>   
 
-   **이선용**
-   <br>Student ID : 20163139 
-   <br>Role : Front-End 개발, 메인페이지 총괄
+##### :point_right:**이선용**<br>
+Student ID : 20163139 <br>
+Role : Front-End 개발, 메인페이지 총괄
    <br>
    <br>
 
-   **이주윤**
-   <br>Student ID : 20163145 
-   <br>Role : API개발, DB 설계 및 구현
+##### :point_right:**이주윤**<br>
+Student ID : 20163145 <br>
+Role : API개발, DB 설계 및 구현
    <br>
    <br>
 
-   **이헌수** 
-   <br>Student ID : 20163147 
-   <br>Role : Front-End 개발
+##### :point_right:**이헌수** <br>
+Student ID : 20163147 <br>
+Role : Front-End 개발
    <br>    
    <br>
 
+##### **:point_right:함석민** <br>
+Student ID : 20163174 <br>
+Role : 팀장, Front-End 개발
 
-   **함석민** 
-   <br>Student ID : 20163174 
-   <br>Role : 팀장, Front-End 개발
-   <br>
+<br>
    <br>
    <br>
 
@@ -99,4 +102,4 @@ android, ios
 
 1~5외 전하고 싶은 내용, 사사등
 
-추가할거 - 사진, 이모티콘, appname, 대표사진(디자인), abstract, 소개 보충
+추가할거 - 사진, appname, 대표사진(디자인), abstract, 소개 보충
