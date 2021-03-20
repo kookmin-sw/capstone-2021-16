@@ -24,7 +24,7 @@
 
 <br>
 
-**기술**
+**기술**<br>
 -Flutter<br>
 -Dart<br>
 -Firebase
