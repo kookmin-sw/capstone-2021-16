@@ -25,9 +25,7 @@
 <br>
 
 **기술**<br>
-Flutter<br>
-Dart<br>
-Firebase
+:computer:Flutter, Dart, Firebase
 
 <br>
 
