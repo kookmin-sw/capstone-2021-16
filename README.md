@@ -2,7 +2,7 @@
 
 ## 팀소개 및 페이지를 꾸며주세요.
 
-### 1. 프로잭트 소개
+### 1. 프로젝트 소개
 
   약속 구독 어플
 
@@ -38,20 +38,20 @@
 ### 4. 팀 소개
   
   - 김현서 
-    - ****5161 
-    - UI/UX 디자인, API개발
+    - Student ID : 20175161 
+    - Role : UI/UX 디자인, API개발
   - 이선용 
-    - ****3139 
-    - Front-End 개발
+    - Student ID : 20163139 
+    - Role : Front-End 개발, 메인페이지 총괄
   - 이주윤 
-    - ****3145 API개발
-    - DB 설계 및 구현
+    - Student ID : 20163145 
+    - Role : API개발, DB 설계 및 구현
   - 이헌수 
-    - ****3147 
-    - Front-End 개발
+    - Student ID : 20163147 
+    - Role : Front-End 개발
   - 함석민 
-    - ****3174 팀장
-    - Front-End 개발
+    - Student ID : 20163174 
+    - Role : 팀장, Front-End 개발
 
 ### 4. 사용법
 
