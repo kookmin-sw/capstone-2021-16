@@ -28,7 +28,6 @@
     android, ios
 <br>
 <br>
-<br>
 
 ### 2. Abstract
 
@@ -49,8 +48,8 @@
   <br>
   
    **김현서**   
-   <br>Student ID : 20175161   
-   <br>Role : UI/UX 디자인, API개발
+   Student ID : 20175161   
+   Role : UI/UX 디자인, API개발
   <br>   
   <br>   
   
