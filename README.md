@@ -25,10 +25,9 @@
 <br>
 
 **기술**
-
-  - Flutter
-  - Dart
-  - Firebase
+- Flutter
+- Dart
+- Firebase
 
 <br>
 
