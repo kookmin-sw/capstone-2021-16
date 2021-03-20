@@ -37,11 +37,11 @@
 
 ### 4. 팀 소개
   
-   **bold**김현서   
+   **bold** 김현서   
    Student ID : 20175161   
    Role : UI/UX 디자인, API개발
      
-   **bold**이선용
+   **bold**  이선용
    <br>Student ID : 20163139 
    <br>Role : Front-End 개발, 메인페이지 총괄
    
