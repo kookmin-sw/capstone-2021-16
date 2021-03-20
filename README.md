@@ -47,8 +47,12 @@
      Student ID : 20163139 
      Role : Front-End 개발, 메인페이지 총괄
    
-   이주윤 
+   이주윤
+   
+   
      Student ID : 20163145 
+     
+     
      Role : API개발, DB 설계 및 구현
    
    이헌수 
