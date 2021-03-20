@@ -47,6 +47,7 @@
      Student ID : 20163139 
      Role : Front-End 개발, 메인페이지 총괄
    
+   
    이주윤
      Student ID : 20163145 
      
