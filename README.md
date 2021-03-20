@@ -37,10 +37,7 @@
 
 ### 4. 팀 소개
   
-   김현서
-   
-     Student ID : 20175161 
-     Role : UI/UX 디자인, API개발
+   김현서   Student ID : 20175161   Role : UI/UX 디자인, API개발
      
      
    이선용
