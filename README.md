@@ -1,4 +1,4 @@
-**팀페이지 주소** -> 2021 16조 https://kookmin-sw.github.io/capstone-2021-16/
+**팀페이지 주소** -> 2021년 16조 https://kookmin-sw.github.io/capstone-2021-16/
 
 
 ### 1. 프로잭트 소개
@@ -18,8 +18,9 @@
 
   기술
     
-    - 프론트엔드 : Flutter, Dart
-    - 백엔드 : Firebase
+    - Flutter
+    - Dart
+    - Firebase
 
   최종산출물
     
