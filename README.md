@@ -41,11 +41,9 @@
    Student ID : 20175161   
    Role : UI/UX 디자인, API개발
      
-     
    이선용
    Student ID : 20163139 
    Role : Front-End 개발, 메인페이지 총괄
-   
    
    이주윤
    Student ID : 20163145 
