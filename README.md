@@ -38,8 +38,8 @@
 <br>
 <br>
 
-### 2. Abstract
-
+### 2. Abstract<br>
+영문작성 - 이헌수
 <br>
 <br>
 <br>
