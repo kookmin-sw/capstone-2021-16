@@ -25,7 +25,7 @@ class _AddPromiseState extends State<AddPromise> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('메모 추가'),
+        title: Text('약속 추가'),
       ),
       body: Container(
         padding: EdgeInsets.all(20),
@@ -35,7 +35,7 @@ class _AddPromiseState extends State<AddPromise> {
               TextField(
                 controller: titleController,
                 decoration: InputDecoration(
-                    labelText: '제목', fillColor: Colors.blueAccent),
+                    labelText: '약속 이름', fillColor: Colors.blueAccent),
               ),
               Expanded(
                   child: TextField(

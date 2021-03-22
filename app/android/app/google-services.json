@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "565793627914",
-    "project_id": "capstone-e9657",
-    "storage_bucket": "capstone-e9657.appspot.com"
+    "project_number": "384098041912",
+    "project_id": "yaksok-4207d",
+    "storage_bucket": "yaksok-4207d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:565793627914:android:262f618dd1fadca78aa4f3",
+        "mobilesdk_app_id": "1:384098041912:android:4e589a95dae634dca4e6cd",
         "android_client_info": {
           "package_name": "com.example.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "565793627914-2hn590j0egsvuf5b2uifom7egis8eblq.apps.googleusercontent.com",
+          "client_id": "384098041912-41ij7k0c96apsd50cu4tv9u78j708bv6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD1OWzzUDvH0Vw4ePx3Ub1Lqk_e9gab-EE"
+          "current_key": "AIzaSyCZ2NUf7wEnQpJ-ix4EryxTRT8BxviOoMM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "565793627914-2hn590j0egsvuf5b2uifom7egis8eblq.apps.googleusercontent.com",
+              "client_id": "384098041912-41ij7k0c96apsd50cu4tv9u78j708bv6.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

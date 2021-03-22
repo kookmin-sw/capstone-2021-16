@@ -17,9 +17,10 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
+
   FirebaseDatabase _database;
   DatabaseReference reference;
-  String _databaseURL = '### 데이터베이스 URL 넣기 ###';
+  String _databaseURL = 'https://yaksok-4207d-default-rtdb.firebaseio.com/';
   List<Memo> memos = List();
 
   int _currentPageIndex; // 페이지 인덱스
