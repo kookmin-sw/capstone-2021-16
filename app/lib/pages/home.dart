@@ -11,9 +11,11 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   ContentsRepository contentsRepository;
   List<Map<String, String>> datas = [];
+  String currentMenu; // 초기 데이터는 확정된 약속
   @override
   void initState() {
     super.initState();
+    currentMenu = "confirm";
   }
 
   @override
@@ -23,7 +25,7 @@ class _HomeState extends State<Home> {
   }
 
   _loadContents() {
-    return contentsRepository.loadContentsData(); // 데이터 불러오기
+    return contentsRepository.loadContentsData(currentMenu); // 데이터 불러오기
   }
 
   _makeDataList(List<Map<String, String>> data) {
@@ -76,6 +78,7 @@ class _HomeState extends State<Home> {
         future: _loadContents(),
         builder: (context, snapshot) {
           //snapshot null check를 해줘야함
+          print(snapshot.data);
           if (snapshot.connectionState != ConnectionState.done) {
             return Center(child: CircularProgressIndicator()); //데이터가 안왔을때 로딩처리
           }
@@ -102,7 +105,42 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _bodyWidget(),
+      body: Center(
+          child: Column(
+        children: [
+          Container(
+              child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              RaisedButton(
+                child: Text('확정된 약속'),
+                onPressed: () {
+                  setState(() {
+                    currentMenu = "confirm";
+                  });
+                },
+              ),
+              RaisedButton(
+                child: Text('나의 약속'),
+                onPressed: () {
+                  setState(() {
+                    currentMenu = "mypromise";
+                  });
+                },
+              ),
+              RaisedButton(
+                child: Text('약속 찾기'),
+                onPressed: () {
+                  setState(() {
+                    currentMenu = "searchpromise";
+                  });
+                },
+              ),
+            ],
+          )),
+          Expanded(child: _bodyWidget()),
+        ],
+      )),
     );
   }
 }
