@@ -38,7 +38,7 @@
 <br>
 
 ### 2. Abstract<br>
-영문작성
+
 <br>
 <br>
 <br>
