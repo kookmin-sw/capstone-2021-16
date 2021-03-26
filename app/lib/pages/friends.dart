@@ -87,7 +87,7 @@ class _FriendsState extends State<Friends> {
       title: _title,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: _appbarWidget(), // -> appbar 지웠음
+        appBar: _appbarWidget(),
         body: _buildStaticListView(),
       ),
     );

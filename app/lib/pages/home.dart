@@ -137,7 +137,7 @@ class _HomeState extends State<Home> {
                   height: 0.0,
                   width: 10.0,
                 ),
-                Text('홍길동님의 프로필'),
+                Text('홍길동님의 약속'),
               ],
             ),
             Padding(
@@ -217,7 +217,7 @@ class _HomeState extends State<Home> {
         child: Row(
           children: [
             SizedBox(width: 5), //Padding이랑 같은 효과
-            Text("알약"),
+            Text("알약플래너"),
           ],
         ),
       ),
@@ -249,11 +249,16 @@ class _HomeState extends State<Home> {
                 width: 0.0,
                 height: 20.0,
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 100.0),
-                child: Container(
-                  child: Text('확정된 약속 리스트'),
-                ),
+              Row(
+                children: [
+                  SizedBox(
+                    width: 30.0,
+                    height: 0,
+                  ),
+                  Text(
+                    '확정된 약속 리스트',
+                  ),
+                ],
               ),
               SizedBox(
                 width: 0.0,
