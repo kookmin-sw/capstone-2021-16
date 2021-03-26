@@ -270,6 +270,8 @@ class _HomeState extends State<Home> {
         child: Row(
           children: [
             SizedBox(width: 5), //Padding이랑 같은 효과
+            Image.asset("assets/images/appicon.png"),
+            SizedBox(width: 10),
             Text(
               "알찬약속",
               style: TextStyle(fontWeight: FontWeight.bold),
@@ -279,9 +281,10 @@ class _HomeState extends State<Home> {
       ),
       actions: [
         IconButton(
-            onPressed: () {}, icon: Image.asset("assets/images/message.png")),
+            onPressed: () {},
+            icon: Image.asset("assets/images/home_message.png")),
         IconButton(
-            onPressed: () {}, icon: Image.asset("assets/images/bell.png"))
+            onPressed: () {}, icon: Image.asset("assets/images/home_alarm.png"))
       ], // 가운데 이름
     );
   }
