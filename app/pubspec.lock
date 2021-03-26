@@ -191,6 +191,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "18.4.48-beta"
+  syncfusion_localizations:
+    dependency: "direct main"
+    description:
+      name: syncfusion_localizations
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "18.4.48"
   term_glyph:
     dependency: transitive
     description:
