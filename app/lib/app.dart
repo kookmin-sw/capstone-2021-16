@@ -24,6 +24,7 @@ class _AppState extends State<App> {
   Widget _appbarWidget() {
     return AppBar(
       // AppBar
+      elevation: 0,
       title: GestureDetector(
         onTap: () {
           // 클릭했을 때 Callback이 이 쪽으로 옴
