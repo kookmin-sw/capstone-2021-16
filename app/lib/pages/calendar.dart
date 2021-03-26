@@ -7,15 +7,44 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
+  Widget _appbarWidget() {
+    return AppBar(
+      // AppBar
+      elevation: 0,
+      title: GestureDetector(
+        onTap: () {
+          // 클릭했을 때 Callback이 이 쪽으로 옴
+          print("click");
+        },
+        child: Row(
+          children: [
+            SizedBox(width: 5), //Padding이랑 같은 효과
+            Text("캘린더"),
+          ],
+        ),
+      ),
+      actions: [
+        IconButton(
+            onPressed: () {}, icon: Image.asset("assets/images/message.png")),
+        IconButton(
+            onPressed: () {}, icon: Image.asset("assets/images/bell.png"))
+      ], // 가운데 이름
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Container(
-          child: SfCalendar(
-            view: CalendarView.week, //주별로 달력을 보여줌
-            dataSource: _getCalendarDataSource(),
-          ),
+      theme: ThemeData(
+        primaryColor: Colors.white,
+      ),
+      home: Scaffold(
+        appBar: _appbarWidget(),
+        body: SfCalendar(
+          view: CalendarView.week, //주별로 달력을 보여줌
+          dataSource: _getCalendarDataSource(),
         ),
+      ),
     );
   }
 
@@ -35,7 +64,7 @@ class _CalendarState extends State<Calendar> {
 }
 
 class _AppointmentDataSource extends CalendarDataSource {
-  _AppointmentDataSource(List<Appointment> source){
+  _AppointmentDataSource(List<Appointment> source) {
     appointments = source;
   }
 }

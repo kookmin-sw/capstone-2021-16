@@ -7,7 +7,6 @@ class Friends extends StatefulWidget {
 
   @override
   _FriendsState createState() => _FriendsState();
-
 }
 
 class _FriendsState extends State<Friends> {
@@ -20,13 +19,7 @@ class _FriendsState extends State<Friends> {
 
   // db 정보 list 생성
   static const String _title = 'Friend List';
-  static const List<String> _data = [
-    '김현서',
-    '이헌수',
-    '이선용',
-    '이주윤',
-    '함석민'
-  ];
+  static const List<String> _data = ['김현서', '이헌수', '이선용', '이주윤', '함석민'];
 
   // 리스트 뷰 만들기
   Widget _buildStaticListView() {
@@ -35,15 +28,15 @@ class _FriendsState extends State<Friends> {
         itemCount: _data.length,
         itemBuilder: (BuildContext context, int i) {
           return ListTile(
-            title: Text(_data[i],
-              style: TextStyle(
-                  fontSize: 20
-              ),),
+            title: Text(
+              _data[i],
+              style: TextStyle(fontSize: 20),
+            ),
 
             //trailing: Icon(   // 하트 이모티콘
-              //already ? Icons.favorite :
-              //Icons.favorite_border,
-              //color: already ? Colors.red : null,
+            //already ? Icons.favorite :
+            //Icons.favorite_border,
+            //color: already ? Colors.red : null,
             //),
 
             /*onTap: () {
@@ -58,19 +51,45 @@ class _FriendsState extends State<Friends> {
 
              */
           );
-        }
+        });
+  }
+
+  Widget _appbarWidget() {
+    return AppBar(
+      // AppBar
+      elevation: 0,
+      title: GestureDetector(
+        onTap: () {
+          // 클릭했을 때 Callback이 이 쪽으로 옴
+          print("click");
+        },
+        child: Row(
+          children: [
+            SizedBox(width: 5), //Padding이랑 같은 효과
+            Text("친구목록"),
+          ],
+        ),
+      ),
+      actions: [
+        IconButton(
+            onPressed: () {}, icon: Image.asset("assets/images/message.png")),
+        IconButton(
+            onPressed: () {}, icon: Image.asset("assets/images/bell.png"))
+      ], // 가운데 이름
     );
   }
 
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primaryColor: Colors.white,
+      ),
       title: _title,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        //appBar: AppBar(title: Text(_title)), // -> appbar 지웠음
+        appBar: _appbarWidget(), // -> appbar 지웠음
         body: _buildStaticListView(),
       ),
     );
   }
-
 }

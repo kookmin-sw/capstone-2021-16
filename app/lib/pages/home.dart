@@ -205,26 +205,60 @@ class _HomeState extends State<Home> {
         ));
   }
 
+  Widget _mainappbarWidget() {
+    return AppBar(
+      // AppBar
+      elevation: 0,
+      title: GestureDetector(
+        onTap: () {
+          // 클릭했을 때 Callback이 이 쪽으로 옴
+          print("click");
+        },
+        child: Row(
+          children: [
+            SizedBox(width: 5), //Padding이랑 같은 효과
+            Text("알약"),
+          ],
+        ),
+      ),
+      actions: [
+        IconButton(
+            onPressed: () {}, icon: Image.asset("assets/images/message.png")),
+        IconButton(
+            onPressed: () {}, icon: Image.asset("assets/images/bell.png"))
+      ], // 가운데 이름
+    );
+  }
+
 // 빌드 구간
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: _mainappbarWidget(),
       body: Center(
           child: Column(
         children: [
           _categoryWidget(size), //
 
           Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.center,
+            // crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(
+                width: 0.0,
+                height: 20.0,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 100.0),
+                child: Container(
+                  child: Text('확정된 약속 리스트'),
+                ),
+              ),
               SizedBox(
                 width: 0.0,
                 height: 10.0,
               ),
-              Container(
-                child: Text('확정된 약속 리스트'),
-              )
             ],
           ),
 
