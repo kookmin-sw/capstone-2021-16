@@ -10,6 +10,30 @@ class AddPromise extends StatefulWidget {
   _AddPromiseState createState() => _AddPromiseState();
 }
 
+Widget _appbarWidget() {
+  return AppBar(
+    // AppBar
+    elevation: 0,
+    title: GestureDetector(
+      onTap: () {
+        // 클릭했을 때 Callback이 이 쪽으로 옴
+        print("click");
+      },
+      child: Row(
+        children: [
+          SizedBox(width: 5), //Padding이랑 같은 효과
+          Text("약속추가"),
+        ],
+      ),
+    ),
+    actions: [
+      IconButton(
+          onPressed: () {}, icon: Image.asset("assets/images/message.png")),
+      IconButton(onPressed: () {}, icon: Image.asset("assets/images/bell.png"))
+    ], // 가운데 이름
+  );
+}
+
 class _AddPromiseState extends State<AddPromise> {
   TextEditingController titleController;
   TextEditingController contentController;
@@ -57,7 +81,7 @@ class _AddPromiseState extends State<AddPromise> {
                     Navigator.of(context).pop();
                   });
                 },
-                child: Text('저장하기'),
+                child: Text('추가하기'),
                 shape:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(1)),
               )
