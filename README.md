@@ -13,7 +13,7 @@ Today, we are living in a noncontact world, which is causing lack of communicati
 때문에 코로나 블루등 부정적인 요인들이 증가하고 있어서 <br>
 For this reason, our society is facing many pessimistic issues,<br>
 사람들간의 소통을 위해 이 어플을 개발하기로 주제를 정했다.<br>
-Which us why we have decided to develop this applications and encourage communication with others.<br>
+Which is why we have decided to develop this application to encourage communication with others.<br>
 <br>
 
 **기능** 
