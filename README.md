@@ -9,11 +9,11 @@
   **Appointment Subscription Applicaion**
 
 우리는 현재 언택트 시대로 인해 소통의 부재를 겪고 있다. <br>
-Today, we are living in a noncontact world, which is causing lack of communications.
+Today, we are living in a noncontact world, which is causing lack of communications.<br>
 때문에 코로나 블루등 부정적인 요인들이 증가하고 있어서 <br>
-For this reason, our society is facing many pessimistic issues,
+For this reason, our society is facing many pessimistic issues,<br>
 사람들간의 소통을 위해 이 어플을 개발하기로 주제를 정했다.<br>
-Which us why we have decided to develop this applications and encourage communication with others.
+Which us why we have decided to develop this applications and encourage communication with others.<br>
 <br>
 
 **기능** 
