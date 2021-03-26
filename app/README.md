@@ -1,9 +1,6 @@
 **팀페이지 주소** -> 2021년 16조 https://kookmin-sw.github.io/capstone-2021-16/
 
-## 알찬약속 
-
-background: url(free-icon-pill-819278.png);
-
+##  ![free-icon-pill-819278 2](C:\Users\함석민\Desktop\free-icon-pill-819278 2.png)얄찬약속
 
 ### 1. 프로젝트 소개
 
