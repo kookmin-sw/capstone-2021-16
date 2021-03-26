@@ -12,10 +12,14 @@ class _HomeState extends State<Home> {
   ContentsRepository contentsRepository;
   List<Map<String, String>> datas = [];
   String currentMenu; // 초기 데이터는 확정된 약속
+  Color btn_on_color;
+  Color btn_off_color;
   @override
   void initState() {
     super.initState();
     currentMenu = "confirm";
+    btn_on_color = Color("#");
+    btn_off_color =  
   }
 
   @override
@@ -30,20 +34,24 @@ class _HomeState extends State<Home> {
 
   _makeDataList(List<Map<String, String>> data) {
     datas = data;
-    return ListView.separated(
+    return ListView.builder(
       // 리스트뷰
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       itemBuilder: (BuildContext _context, int index) {
         return Container(
-            padding: const EdgeInsets.symmetric(vertical: 10),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Expanded(
                   // width를 꽉 채울 때 사용
                   child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 10),
+                    color: Colors.white,
                     child: Column(
                       // crossAxisAlignment: CrossAxisAlignment.end,
+
                       children: [
                         Text(
                           datas[index]["title"],
@@ -61,12 +69,6 @@ class _HomeState extends State<Home> {
                 )
               ],
             ));
-      },
-      separatorBuilder: (BuildContext _context, int index) {
-        return Container(
-          height: 1,
-          color: Color(0xff999999),
-        );
       },
       itemCount: datas.length,
     );
@@ -114,6 +116,7 @@ class _HomeState extends State<Home> {
             children: [
               RaisedButton(
                 child: Text('확정된 약속'),
+                color: btn_color,
                 onPressed: () {
                   setState(() {
                     currentMenu = "confirm";
