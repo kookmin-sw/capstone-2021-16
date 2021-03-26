@@ -23,12 +23,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  syncfusion_localizations: ^18.1.36
   cupertino_icons: ^1.0.2
   flutter_svg: ^0.19.3
   syncfusion_flutter_calendar: ^18.4.48
-  # 추가한거
-  english_words : ^3.1.5
+  syncfusion_localizations: ^18.1.36
+
 
 dev_dependencies:
   flutter_test:
