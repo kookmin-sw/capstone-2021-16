@@ -11,9 +11,15 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   ContentsRepository contentsRepository;
   List<Map<String, String>> datas = [];
+  String currentMenu; // 초기 데이터는 확정된 약속
+  Color btn_on_color;
+  Color btn_off_color;
   @override
   void initState() {
     super.initState();
+    currentMenu = "confirm";
+    btn_on_color = Color("#");
+    btn_off_color =  
   }
 
   @override
@@ -23,25 +29,29 @@ class _HomeState extends State<Home> {
   }
 
   _loadContents() {
-    return contentsRepository.loadContentsData(); // 데이터 불러오기
+    return contentsRepository.loadContentsData(currentMenu); // 데이터 불러오기
   }
 
   _makeDataList(List<Map<String, String>> data) {
     datas = data;
-    return ListView.separated(
+    return ListView.builder(
       // 리스트뷰
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       itemBuilder: (BuildContext _context, int index) {
         return Container(
-            padding: const EdgeInsets.symmetric(vertical: 10),
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Expanded(
                   // width를 꽉 채울 때 사용
                   child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 10, horizontal: 10),
+                    color: Colors.white,
                     child: Column(
                       // crossAxisAlignment: CrossAxisAlignment.end,
+
                       children: [
                         Text(
                           datas[index]["title"],
@@ -60,12 +70,6 @@ class _HomeState extends State<Home> {
               ],
             ));
       },
-      separatorBuilder: (BuildContext _context, int index) {
-        return Container(
-          height: 1,
-          color: Color(0xff999999),
-        );
-      },
       itemCount: datas.length,
     );
   }
@@ -76,6 +80,7 @@ class _HomeState extends State<Home> {
         future: _loadContents(),
         builder: (context, snapshot) {
           //snapshot null check를 해줘야함
+          print(snapshot.data);
           if (snapshot.connectionState != ConnectionState.done) {
             return Center(child: CircularProgressIndicator()); //데이터가 안왔을때 로딩처리
           }
@@ -102,7 +107,43 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _bodyWidget(),
+      body: Center(
+          child: Column(
+        children: [
+          Container(
+              child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              RaisedButton(
+                child: Text('확정된 약속'),
+                color: btn_color,
+                onPressed: () {
+                  setState(() {
+                    currentMenu = "confirm";
+                  });
+                },
+              ),
+              RaisedButton(
+                child: Text('나의 약속'),
+                onPressed: () {
+                  setState(() {
+                    currentMenu = "mypromise";
+                  });
+                },
+              ),
+              RaisedButton(
+                child: Text('약속 찾기'),
+                onPressed: () {
+                  setState(() {
+                    currentMenu = "searchpromise";
+                  });
+                },
+              ),
+            ],
+          )),
+          Expanded(child: _bodyWidget()),
+        ],
+      )),
     );
   }
 }

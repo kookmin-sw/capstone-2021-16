@@ -90,7 +90,7 @@ class _AppState extends State<App> {
           _bottomNavigationBarItem("home", "홈"),
           _bottomNavigationBarItem("friends", "친구"),
           _bottomNavigationBarItem("plus", "약속추가"),
-          _bottomNavigationBarItem("calendar", "알림"),
+          _bottomNavigationBarItem("calendar", "캘린더"),
           _bottomNavigationBarItem("profile", "프로필"),
         ]);
   }
