@@ -1,6 +1,4 @@
-**팀페이지 주소** -> 2021년 16조 https://kookmin-sw.github.io/capstone-2021-16/
-
-## APPNAME
+## 
 
 ### 1. 프로젝트 소개
 
@@ -93,4 +91,4 @@ Role : 팀장, Front-End 개발
 
 1~5외 전하고 싶은 내용, 사사등
 
-추가할거 - 사진, appname, 대표사진(디자인), abstract, 소개 보충
+추가할  - 사진, appname, 대표사진(디자인), abstract, 소개 보충
