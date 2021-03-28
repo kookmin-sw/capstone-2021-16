@@ -55,27 +55,27 @@
 
 ### 4. 팀 소개
 
-#### :point_right:**김현서**   
+:point_right:**김현서**   
    Student ID : 20175161   
    Role : UI/UX 디자인, API개발
   <br>   
 
-#### :point_right:**이선용**<br>
+:point_right:**이선용**<br>
 Student ID : 20163139 <br>
 Role : Front-End 개발
    <br>
 
-#### :point_right:**이주윤**<br>
+:point_right:**이주윤**<br>
 Student ID : 20163145 <br>
 Role : API개발, DB 설계 및 구현
    <br>
 
-#### :point_right:**이헌수** <br>
+:point_right:**이헌수** <br>
 Student ID : 20163147 <br>
 Role : Front-End 개발
    <br>    
 
-#### **:point_right:함석민** <br>
+**:point_right:함석민** <br>
 Student ID : 20163174 <br>
 Role : 팀장, Front-End 개발
 
