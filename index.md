@@ -62,7 +62,7 @@
 
 👉**이선용**<br>
 Student ID : 20163139 <br>
-Role : Front-End 개발, 메인페이지 총괄
+Role : Front-End 개발
    <br>
 
 👉**이주윤**<br>
