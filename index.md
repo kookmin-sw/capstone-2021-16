@@ -16,25 +16,25 @@
 
 **기능** 
 
-:lock: 로그인을 통한 개인별 약속 관리
+🔒 로그인을 통한 개인별 약속 관리
 
-:couple: 구독리스트에 친구 추가
+👫 구독리스트에 친구 추가
 
-:calendar: 친구 캘린더에서 약속 신청
+📆 친구 캘린더에서 약속 신청
 
-:pushpin: 기타 추가 예정
+📌 기타 추가 예정
 
 <br>
 
 **기술**
 
-:computer: Flutter, Dart, Firebase
+💻 Flutter, Dart, Firebase
 
 <br>
 
 **최종 산출물**
 
-:iphone: android, ios
+📱 android, ios
 
 <br>
 <br>
