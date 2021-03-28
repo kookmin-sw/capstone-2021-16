@@ -1,7 +1,7 @@
 **팀페이지 주소** -> 2021년 16조 https://kookmin-sw.github.io/capstone-2021-16/
 
 ## APPNAME 
-![Alt text](/img.jpg)
+![Alt text](/path/img.jpg)
 
 ### 1. 프로젝트 소개
 
