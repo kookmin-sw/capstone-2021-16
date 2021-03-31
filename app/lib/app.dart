@@ -3,7 +3,11 @@ import 'package:app/pages/calendar.dart';
 import 'package:app/pages/friends.dart';
 import 'package:app/pages/home.dart';
 import 'package:app/pages/profile.dart';
+
 import 'package:flutter/material.dart';
+
+import './data/memo.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class App extends StatefulWidget {
   App({Key key}) : super(key: key);
@@ -13,12 +17,28 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
+
+  FirebaseDatabase _database;
+  DatabaseReference reference;
+  String _databaseURL = 'https://yaksok-4207d-default-rtdb.firebaseio.com/';
+  List<Memo> memos = List();
+
   int _currentPageIndex; // 페이지 인덱스
 
   @override // 데이터 다루는 곳
   void initState() {
     super.initState();
     _currentPageIndex = 0; //현재 페이지 인덱스 ( 홈 )
+
+    _database = FirebaseDatabase(databaseURL: _databaseURL);
+    reference = _database.reference().child('memo');
+
+    reference.onChildAdded.listen((event) {
+      print(event.snapshot.value.toString());
+      setState(() {
+        memos.add(Memo.fromSnapshot(event.snapshot));
+      });
+    });
   }
 
   /// 네비게이션 분기하는 로직
@@ -31,7 +51,7 @@ class _AppState extends State<App> {
         return Friends(); // 친구 목록 페이지
         break;
       case 2:
-        return AddPromise(); // 약속추가페이지
+        return AddPromise(reference); // 약속추가페이지
         break;
       case 3:
         return Calendar(); // 캘린더 페이지
