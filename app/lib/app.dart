@@ -63,9 +63,11 @@ class _AppState extends State<App> {
   }
 
   BottomNavigationBarItem _bottomNavigationBarItem(
-      String iconName, String label) {
+      String iconName, String label, int index) {
     return BottomNavigationBarItem(
-      icon: Image.asset("assets/images/${iconName}.png"),
+      icon: _currentPageIndex == index
+          ? new Image.asset("assets/images/${iconName}_on.png")
+          : new Image.asset("assets/images/${iconName}.png"),
       label: label,
     );
   }
@@ -83,11 +85,11 @@ class _AppState extends State<App> {
         selectedItemColor: Colors.black,
         selectedLabelStyle: TextStyle(color: Colors.black),
         items: [
-          _bottomNavigationBarItem("home", "홈"),
-          _bottomNavigationBarItem("friends", "친구"),
-          _bottomNavigationBarItem("plus", "약속추가"),
-          _bottomNavigationBarItem("calendar", "캘린더"),
-          _bottomNavigationBarItem("profile", "프로필"),
+          _bottomNavigationBarItem("home", "홈", 0),
+          _bottomNavigationBarItem("friends", "친구", 1),
+          _bottomNavigationBarItem("plus", "약속추가", 2),
+          _bottomNavigationBarItem("calendar", "캘린더", 3),
+          _bottomNavigationBarItem("profile", "프로필", 4),
         ]);
   }
 
