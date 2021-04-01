@@ -53,12 +53,12 @@
 
 👉**김현서**   
    Student ID : 20175161   
-   Role : UI/UX 디자인
+   Role : UI/UX 디자인, Front-End 개발
   <br>   
 
 👉**이선용**<br>
 Student ID : 20163139 <br>
-Role : Front-End 개발
+Role : Front-End 개발, DB연동
    <br>
 
 👉**이주윤**<br>
