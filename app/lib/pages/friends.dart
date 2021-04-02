@@ -68,7 +68,7 @@ class _FriendsState extends State<Friends> {
         child: Row(
           children: [
             SizedBox(width: 5), //Padding이랑 같은 효과
-            Text("캘린더"),
+            Text("친구"),
           ],
         ),
       ),

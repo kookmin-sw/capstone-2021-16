@@ -22,7 +22,7 @@ class _AddPromiseState extends State<AddPromise> {
         child: Row(
           children: [
             SizedBox(width: 5), //Padding이랑 같은 효과
-            Text("캘린더"),
+            Text("약속 추가"),
           ],
         ),
       ),

@@ -282,10 +282,20 @@ class _HomeState extends State<Home> {
       ),
       actions: [
         IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MessagesList()), // Move to Message
+              );
+            },
             icon: Image.asset("assets/images/home_message.png")),
         IconButton(
-            onPressed: () {}, icon: Image.asset("assets/images/home_alarm.png"))
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NotesList()), // Move to Notice
+              );
+            }, icon: Image.asset("assets/images/home_alarm.png"))
       ], // 가운데 이름
     );
   }
