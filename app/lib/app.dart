@@ -17,7 +17,6 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-
   FirebaseDatabase _database;
   DatabaseReference reference;
   String _databaseURL = 'https://yaksok-4207d-default-rtdb.firebaseio.com/';
