@@ -15,11 +15,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg: ^0.19.3
   syncfusion_flutter_calendar: ^18.4.48
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> f4b54a711302e6a6b48e758005bb3ea13070e29b
   firebase_core: ^1.0.2
   firebase_auth: ^1.0.1
   google_sign_in: ^5.0.1
