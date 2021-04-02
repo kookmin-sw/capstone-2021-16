@@ -1,6 +1,7 @@
 import 'package:app/repository/contents_repository.dart';
 import 'package:flutter/material.dart';
-
+import 'message.dart';
+import 'notification.dart';
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
 

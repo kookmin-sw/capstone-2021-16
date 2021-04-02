@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:english_words/english_words.dart';
+import 'message.dart';
+import 'notification.dart';
 
 class Friends extends StatefulWidget {
   //Friends({Key key}) : super(key: key);
@@ -66,15 +68,25 @@ class _FriendsState extends State<Friends> {
         child: Row(
           children: [
             SizedBox(width: 5), //Padding이랑 같은 효과
-            Text("친구목록"),
+            Text("캘린더"),
           ],
         ),
       ),
       actions: [
         IconButton(
-            onPressed: () {}, icon: Image.asset("assets/images/message.png")),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MessagesList()), // Move to Message
+              );
+            }, icon: Image.asset('assets/images/message.png')),
         IconButton(
-            onPressed: () {}, icon: Image.asset("assets/images/bell.png"))
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NotesList()), // Move to Notice
+              );
+            }, icon: Image.asset('assets/images/bell.png'))
       ], // 가운데 이름
     );
   }
