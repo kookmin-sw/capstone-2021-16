@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
+import 'message.dart';
+import 'notification.dart';
+
 class Calendar extends StatefulWidget {
   @override
   _CalendarState createState() => _CalendarState();
@@ -25,9 +28,19 @@ class _CalendarState extends State<Calendar> {
       ),
       actions: [
         IconButton(
-            onPressed: () {}, icon: Image.asset("assets/images/message.png")),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MessagesList()), // Move to Message
+              );
+            }, icon: Image.asset('assets/images/message.png')),
         IconButton(
-            onPressed: () {}, icon: Image.asset("assets/images/bell.png"))
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NotesList()), // Move to Notice
+              );
+            }, icon: Image.asset('assets/images/bell.png'))
       ], // 가운데 이름
     );
   }

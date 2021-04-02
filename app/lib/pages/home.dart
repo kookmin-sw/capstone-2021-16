@@ -1,6 +1,7 @@
 import 'package:app/repository/contents_repository.dart';
 import 'package:flutter/material.dart';
-
+import 'message.dart';
+import 'notification.dart';
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
 
@@ -281,10 +282,20 @@ class _HomeState extends State<Home> {
       ),
       actions: [
         IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MessagesList()), // Move to Message
+              );
+            },
             icon: Image.asset("assets/images/home_message.png")),
         IconButton(
-            onPressed: () {}, icon: Image.asset("assets/images/home_alarm.png"))
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NotesList()), // Move to Notice
+              );
+            }, icon: Image.asset("assets/images/home_alarm.png"))
       ], // 가운데 이름
     );
   }
