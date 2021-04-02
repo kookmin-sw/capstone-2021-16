@@ -3,7 +3,11 @@ import 'package:app/pages/calendar.dart';
 import 'package:app/pages/friends.dart';
 import 'package:app/pages/home.dart';
 import 'package:app/pages/profile.dart';
+
 import 'package:flutter/material.dart';
+
+import './data/memo.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class App extends StatefulWidget {
   App({Key key}) : super(key: key);
@@ -13,36 +17,28 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
+
+  FirebaseDatabase _database;
+  DatabaseReference reference;
+  String _databaseURL = 'https://yaksok-4207d-default-rtdb.firebaseio.com/';
+  List<Memo> memos = List();
+
   int _currentPageIndex; // 페이지 인덱스
 
   @override // 데이터 다루는 곳
   void initState() {
     super.initState();
     _currentPageIndex = 0; //현재 페이지 인덱스 ( 홈 )
-  }
 
-  Widget _appbarWidget() {
-    return AppBar(
-      // AppBar
-      title: GestureDetector(
-        onTap: () {
-          // 클릭했을 때 Callback이 이 쪽으로 옴
-          print("click");
-        },
-        child: Row(
-          children: [
-            SizedBox(width: 5), //Padding이랑 같은 효과
-            Text("Appname"),
-          ],
-        ),
-      ),
-      actions: [
-        IconButton(
-            onPressed: () {}, icon: Image.asset("assets/images/message.png")),
-        IconButton(
-            onPressed: () {}, icon: Image.asset("assets/images/bell.png"))
-      ], // 가운데 이름
-    );
+    _database = FirebaseDatabase(databaseURL: _databaseURL);
+    reference = _database.reference().child('memo');
+
+    reference.onChildAdded.listen((event) {
+      print(event.snapshot.value.toString());
+      setState(() {
+        memos.add(Memo.fromSnapshot(event.snapshot));
+      });
+    });
   }
 
   /// 네비게이션 분기하는 로직
@@ -55,7 +51,7 @@ class _AppState extends State<App> {
         return Friends(); // 친구 목록 페이지
         break;
       case 2:
-        return AddPromise(); // 약속추가페이지
+        return AddPromise(reference); // 약속추가페이지
         break;
       case 3:
         return Calendar(); // 캘린더 페이지
@@ -67,9 +63,11 @@ class _AppState extends State<App> {
   }
 
   BottomNavigationBarItem _bottomNavigationBarItem(
-      String iconName, String label) {
+      String iconName, String label, int index) {
     return BottomNavigationBarItem(
-      icon: Image.asset("assets/images/${iconName}.png"),
+      icon: _currentPageIndex == index
+          ? new Image.asset("assets/images/${iconName}_on.png")
+          : new Image.asset("assets/images/${iconName}.png"),
       label: label,
     );
   }
@@ -87,18 +85,17 @@ class _AppState extends State<App> {
         selectedItemColor: Colors.black,
         selectedLabelStyle: TextStyle(color: Colors.black),
         items: [
-          _bottomNavigationBarItem("home", "홈"),
-          _bottomNavigationBarItem("friends", "친구"),
-          _bottomNavigationBarItem("plus", "약속추가"),
-          _bottomNavigationBarItem("calendar", "알림"),
-          _bottomNavigationBarItem("profile", "프로필"),
+          _bottomNavigationBarItem("home", "홈", 0),
+          _bottomNavigationBarItem("friends", "친구", 1),
+          _bottomNavigationBarItem("plus", "약속추가", 2),
+          _bottomNavigationBarItem("calendar", "캘린더", 3),
+          _bottomNavigationBarItem("profile", "프로필", 4),
         ]);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _appbarWidget(),
       body: _bodyWidget(),
       bottomNavigationBar: _bottomNavigationBarWidget(),
       endDrawer: Drawer(
