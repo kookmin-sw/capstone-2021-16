@@ -3,9 +3,11 @@ import 'package:project1/pages/calendar.dart';
 import 'package:project1/pages/friends.dart';
 import 'package:project1/pages/home.dart';
 import 'package:project1/pages/message.dart';
-import 'package:project1/pages/notice.dart';
+import 'package:project1/pages/notification.dart';
 import 'package:project1/pages/profile.dart';
 import 'package:flutter/material.dart';
+import './data/memo.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 class App extends StatefulWidget {
   App({Key key}) : super(key: key);
@@ -15,12 +17,28 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
+
+  FirebaseDatabase _database;
+  DatabaseReference reference;
+  String _databaseURL = 'https://yaksok-4207d-default-rtdb.firebaseio.com/';
+  List<Memo> memos = List();
+
   int _currentPageIndex; // 페이지 인덱스
 
   @override // 데이터 다루는 곳
   void initState() {
     super.initState();
     _currentPageIndex = 0; //현재 페이지 인덱스 ( 홈 )
+
+    _database = FirebaseDatabase(databaseURL: _databaseURL);
+    reference = _database.reference().child('memo');
+
+    reference.onChildAdded.listen((event) {
+      print(event.snapshot.value.toString());
+      setState(() {
+        memos.add(Memo.fromSnapshot(event.snapshot));
+      });
+    });
   }
 
   Widget _appbarWidget() {
@@ -43,14 +61,14 @@ class _AppState extends State<App> {
             onPressed: () {
              Navigator.push(
                context,
-               MaterialPageRoute(builder: (context) => Message()), // Move to Message
+               MaterialPageRoute(builder: (context) => MessageList()), // Move to Message
              );
               }, icon: Image.asset('assets/images/message.png')),
         IconButton(
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Notice()), // Move to Notice
+                MaterialPageRoute(builder: (context) => NotesList()), // Move to Notice
               );
             }, icon: Image.asset('assets/images/bell.png'))
       ], // 가운데 이름
@@ -79,9 +97,11 @@ class _AppState extends State<App> {
   }
 
   BottomNavigationBarItem _bottomNavigationBarItem(
-      String iconName, String label) {
+      String iconName, String label, int index) {
     return BottomNavigationBarItem(
-      icon: Image.asset('assets/images/${iconName}.png'),
+      icon: _currentPageIndex == index
+          ? new Image.asset("assets/images/${iconName}_on.png")
+          : new Image.asset("assets/images/${iconName}.png"),
       label: label,
     );
   }
@@ -99,11 +119,11 @@ class _AppState extends State<App> {
         selectedItemColor: Colors.black,
         selectedLabelStyle: TextStyle(color: Colors.black),
         items: [
-          _bottomNavigationBarItem("home", "홈"),
-          _bottomNavigationBarItem("friends", "친구"),
-          _bottomNavigationBarItem("plus", "약속추가"),
-          _bottomNavigationBarItem("calendar", "알림"),
-          _bottomNavigationBarItem("profile", "프로필"),
+          _bottomNavigationBarItem("home", "홈", 0),
+          _bottomNavigationBarItem("friends", "친구", 1),
+          _bottomNavigationBarItem("plus", "약속추가", 2),
+          _bottomNavigationBarItem("calendar", "알림", 3),
+          _bottomNavigationBarItem("profile", "프로필", 4),
         ]);
   }
 

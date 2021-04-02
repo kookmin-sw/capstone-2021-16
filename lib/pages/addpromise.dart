@@ -6,7 +6,6 @@ class AddPromise extends StatefulWidget {
   @override
   _AddPromiseState createState() => _AddPromiseState();
 }
-
 class _AddPromiseState extends State<AddPromise> {
   final _controller = TextEditingController();
   String promise = '';

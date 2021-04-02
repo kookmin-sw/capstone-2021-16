@@ -11,14 +11,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       // 최상단에 있는 것
-      title: '알약',
+      title: 'Flutter Demo',
       theme: ThemeData(
         primaryColor: Colors.white,
-        primarySwatch: Colors.blue,
+        // primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: App(),
-
     );
   }
 }
