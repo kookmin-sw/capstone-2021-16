@@ -1,7 +1,7 @@
 name: app
 description: A new Flutter project.
 
-publish_to: 'none' 
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -11,14 +11,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-<<<<<<< HEAD
-  #syncfusion_flutter_calendar: ^18.4.46
-=======
->>>>>>> e565bd8e13895f8e5072c115041ae0eba162a431
   syncfusion_localizations: ^18.1.36
   cupertino_icons: ^1.0.2
   flutter_svg: ^0.19.3
   syncfusion_flutter_calendar: ^18.4.48
+
   firebase_core: ^1.0.2
   firebase_auth: ^1.0.1
   google_sign_in: ^5.0.1
