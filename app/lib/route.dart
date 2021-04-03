@@ -12,6 +12,7 @@ class routePage extends StatefulWidget {
 }
 
 class _routePageState extends State<routePage> {
+//  final AuthService _auth = AuthService();
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(

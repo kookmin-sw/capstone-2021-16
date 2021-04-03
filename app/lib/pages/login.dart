@@ -1,8 +1,13 @@
 import 'package:app/app.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+
+final FirebaseAuth _auth = FirebaseAuth.instance;
+final GoogleSignIn _googleSignIn = new GoogleSignIn();
+final userReference = FirebaseDatabase.instance.reference().child('users');
 
 class Login extends StatefulWidget {
   Login({Key key}) : super(key: key);
@@ -12,36 +17,68 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  Future<UserCredential> signInWithGoogle() async {
-    // Trigger the authentication flow
-    final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+  bool isSignedIn = false;
+  GoogleSignInAccount _currentUser;
 
-    // Obtain the auth details from the request
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser.authentication;
+  Future<void> _hadleSignin() async {
+    try {
+      print('구글 signIn');
+      // await _googleSignIn.signIn();
+      _googleSignIn.signIn().then((GoogleSignInAccount account) async {
+        GoogleSignInAuthentication auth = await account.authentication;
+        print(account.id);
+        print(account.email);
+        print(account.displayName);
+        print(account.photoUrl);
+      });
+    } catch (error) {
+      print(error);
+    }
+  }
 
-    // Create a new credential
-    final GoogleAuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
+  Widget googleSignButton() {
+    return GestureDetector(
+      onTap: () {
+        print('구글 로그인 버트느');
+        _hadleSignin();
+      },
+      child: Text(
+        'Sign In With Google',
+        style: TextStyle(fontSize: 18, color: Colors.black),
+      ),
     );
+  }
 
-    // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+  @override
+  void initState() {
+    super.initState();
+    Firebase.initializeApp().whenComplete(() {
+      // Firebase 초기화
+      print('complete');
+      setState(() {});
+    });
+    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
+      // 기존 사용자가 정보 변경되었는지
+      setState(() {
+        _currentUser = account;
+      });
+      if (_currentUser != null) {
+        // 기존에 로그인 했었다면 app으로 이동
+        print(_currentUser);
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => App()),
+            (Route<dynamic> route) => false);
+      }
+    });
+    _googleSignIn.signInSilently();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FlatButton(
-              child: Text('Google Login'),
-              onPressed: signInWithGoogle,
-            )
-          ],
+        child: Center(
+          child: googleSignButton(),
         ),
       ),
     );
