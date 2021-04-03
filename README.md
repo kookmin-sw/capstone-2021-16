@@ -42,7 +42,7 @@
 <br>
 
 ### 2. Abstract<br>
-
+Today, we are going through a lack of communication due to the noncontact era. This atmosphere is causing countless numbers of pessimistic social problems, the major one being depressions, also known as Corona Blue. For this reason, we have decided to develop an application to endorse connections amongst people. This project aims at students. The goal is to help people straightforwardly make appointments with others using private accounts that one can create with their personal information. The users can comfortably and rapidly make new appointments with their friends on the main page and effectively manage those appointments with various tools provided in the application.
 <br>
 <br>
 <br>
