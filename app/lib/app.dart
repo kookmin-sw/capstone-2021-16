@@ -17,7 +17,6 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-
   FirebaseDatabase _database;
   DatabaseReference reference;
   String _databaseURL = 'https://yaksok-4207d-default-rtdb.firebaseio.com/';
@@ -51,7 +50,7 @@ class _AppState extends State<App> {
         return Friends(); // 친구 목록 페이지
         break;
       case 2:
-        return AddPromise(reference); // 약속추가페이지
+        return AddPromise(); // 약속추가페이지
         break;
       case 3:
         return Calendar(); // 캘린더 페이지
