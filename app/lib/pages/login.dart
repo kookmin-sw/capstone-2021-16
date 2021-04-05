@@ -20,27 +20,25 @@ class _LoginState extends State<Login> {
   bool isSignedIn = false;
   GoogleSignInAccount _currentUser;
 
-  Future<void> _hadleSignin() async {
-    try {
-      print('구글 signIn');
-      // await _googleSignIn.signIn();
-      _googleSignIn.signIn().then((GoogleSignInAccount account) async {
-        GoogleSignInAuthentication auth = await account.authentication;
-        print(account.id);
-        print(account.email);
-        print(account.displayName);
-        print(account.photoUrl);
-      });
-    } catch (error) {
-      print(error);
-    }
+  Future<UserCredential> signInWithGoogle() async {
+    final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
+
+    final GoogleAuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
+    return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
   Widget googleSignButton() {
     return GestureDetector(
       onTap: () {
         print('구글 로그인 버트느');
-        _hadleSignin();
+        signInWithGoogle();
       },
       child: Text(
         'Sign In With Google',
@@ -57,29 +55,25 @@ class _LoginState extends State<Login> {
       print('complete');
       setState(() {});
     });
-    _googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount account) {
-      // 기존 사용자가 정보 변경되었는지
-      setState(() {
-        _currentUser = account;
-      });
-      if (_currentUser != null) {
-        // 기존에 로그인 했었다면 app으로 이동
-        print(_currentUser);
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => App()),
-            (Route<dynamic> route) => false);
-      }
-    });
-    _googleSignIn.signInSilently();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Center(
-          child: googleSignButton(),
-        ),
+      // 최상단에 있는 것
+      body: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (BuildContext context, AsyncSnapshot<User> snapshot) {
+          if (snapshot.hasData) {
+            return App();
+          } else {
+            return Scaffold(
+              body: Center(
+                child: googleSignButton(),
+              ),
+            );
+          }
+        },
       ),
     );
   }
