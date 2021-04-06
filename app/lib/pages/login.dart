@@ -1,4 +1,6 @@
+import 'package:app/CreateAccount.dart';
 import 'package:app/app.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -7,7 +9,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn _googleSignIn = new GoogleSignIn();
-final userReference = FirebaseDatabase.instance.reference().child('users');
+final userReference = FirebaseFirestore.instance.collection('users');
+// final userReference = FirebaseDatabase.instance.reference().child('users');
 
 class Login extends StatefulWidget {
   Login({Key key}) : super(key: key);
@@ -30,8 +33,26 @@ class _LoginState extends State<Login> {
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
-
+    await saveUserInfoToFirebase(googleUser);
     return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
+  saveUserInfoToFirebase(googleUser) async {
+    final GoogleSignInAccount gCurrentUser = googleUser;
+    print(gCurrentUser);
+    DocumentSnapshot documentSnapshot =
+        await userReference.doc(gCurrentUser.id).get();
+    if (!documentSnapshot.exists) {
+      final username = await Navigator.push(
+          context, MaterialPageRoute(builder: (context) => CreateAccount()));
+      userReference.doc(gCurrentUser.id).set({
+        'id': gCurrentUser.id,
+        'profileNmae': gCurrentUser.displayName,
+        'username': username,
+        'url': gCurrentUser.photoUrl,
+        'email': gCurrentUser.email,
+      });
+    }
   }
 
   Widget googleSignButton() {
@@ -39,6 +60,7 @@ class _LoginState extends State<Login> {
       onTap: () {
         print('구글 로그인 버트느');
         signInWithGoogle();
+        // saveUserInfoToDatabase();
       },
       child: Text(
         'Sign In With Google',

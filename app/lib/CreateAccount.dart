@@ -2,9 +2,15 @@ import 'dart:async';
 
 import 'package:app/app.dart';
 import 'package:app/pages/login.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+
+final userReference = FirebaseFirestore.instance.collection('users');
+final GoogleSignIn googleSignIn = new GoogleSignIn();
+GoogleSignInAccount currentUser;
+// FirebaseUesr user;
 
 class CreateAccount extends StatefulWidget {
   CreateAccount({Key key}) : super(key: key);
@@ -14,9 +20,12 @@ class CreateAccount extends StatefulWidget {
 }
 
 class _CreateAccountState extends State<CreateAccount> {
-//  final AuthService _auth = AuthService();
   String username;
-  submitUsername() {
+  bool isSigned = false;
+  String uid;
+  final myController = TextEditingController();
+  void submitUsername() {
+    username = myController.text;
     Timer(Duration(seconds: 4), () {
       Navigator.pop(context, username);
     });
@@ -24,25 +33,34 @@ class _CreateAccountState extends State<CreateAccount> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Column(
-      children: [
-        TextFormField(
-          onSaved: (val) => username = val,
-        ),
-        GestureDetector(
-            onTap: submitUsername(),
-            child: Container(
-              height: 55,
-              width: 300,
-              decoration: BoxDecoration(
-                  color: Colors.lightGreenAccent,
-                  borderRadius: BorderRadius.circular(8)),
-              child: Center(
-                child: Text('submit'),
+    if (!isSigned) {
+      return Scaffold(
+          body: Center(
+        child: Column(
+          children: [
+            TextField(
+              controller: myController,
+            ),
+            RaisedButton(
+              child: Text(
+                'submit',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ))
-      ],
-    ));
+              elevation: 0,
+              shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(30),
+              ),
+              onPressed: () {
+                submitUsername();
+              },
+            ),
+          ],
+        ),
+      ));
+    } else {
+      return App();
+    }
   }
 }

@@ -1,5 +1,4 @@
 import 'package:app/pages/login.dart';
-import 'package:app/route.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
