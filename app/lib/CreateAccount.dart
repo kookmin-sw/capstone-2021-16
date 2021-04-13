@@ -26,7 +26,7 @@ class _CreateAccountState extends State<CreateAccount> {
   final myController = TextEditingController();
   void submitUsername() {
     username = myController.text;
-    Timer(Duration(seconds: 4), () {
+    Timer(Duration(seconds: 2), () {
       Navigator.pop(context, username);
     });
   }
