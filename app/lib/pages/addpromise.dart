@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'message.dart';
 import 'notification.dart';
+import 'calendar.dart';
 
 class AddPromise extends StatefulWidget {
   AddPromise({Key key}) : super(key: key);
@@ -44,6 +45,7 @@ class _AddPromiseState extends State<AddPromise> {
       ], // 가운데 이름
     );
   }
+
   final _controller = TextEditingController();
   String promise = '';
   bool repeat = false;
@@ -438,6 +440,11 @@ class _AddPromiseState extends State<AddPromise> {
             color: Colors.grey,
             child: TextButton(
                 child: Text("약속 추가하기"),
+                onPressed: () {setState(() {
+                  appointments.add(Appointment(
+
+                  ))
+                });,
                 style: TextButton.styleFrom(
                   textStyle: TextStyle(fontSize: 20),
                 )))
@@ -445,3 +452,4 @@ class _AddPromiseState extends State<AddPromise> {
     ));
   }
 }
+
