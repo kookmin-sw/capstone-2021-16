@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project1/pages/selectplace.dart';
+import 'selectplace.dart';
 import 'message.dart';
 import 'notification.dart';
 import 'dart:typed_data';
@@ -43,7 +43,7 @@ class _AddPromiseState extends State<AddPromise> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MessageList()), // Move to Message
+                MaterialPageRoute(builder: (context) => MessagesList()), // Move to Message
               );
             }, icon: Image.asset('assets/images/message.png')),
         IconButton(
