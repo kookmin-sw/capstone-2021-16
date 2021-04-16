@@ -16,7 +16,7 @@
 
 **기능** 
 
-:lock: 회원가입을 통한 로그인
+:lock: SNS연동을 통한 로그인
 
 :couple: 친구리스트에 친구 추가
 
@@ -42,8 +42,7 @@
 <br>
 
 ### 2. Abstract<br>
-본 프로젝트는 일정을 효율적을 관리하고 그것을 친구들과 공유 하고자 하는 학생층을 대상으로 합니다. 중요한 일정들을 손쉽게 관리하고 공유할 수 있는 Android & iOS cross-platform 어플리케이션이 최종 산출물입니다. 사용자는 이메일과 같은 개인 정보나 다른 SNS의 계정을 통해 로그인을 합니다. 다가오는 일정들을 손쉽게 볼 수 있는 홈화면에서 네비게이션 바를 통해 달력을 조회하거나 일정들을 추가할 수 있습니다. 혹은 상단 바에서 중요한 알림들이나 친구들과 실시간으로 소통할 수 있는 채팅창을 조회할수도 있습니다. 저희 앱을 톨해 현재와 같은 시국에 학생들을 비롯한 젊은이들간의 소통이 활발해져 사회적으로 큰 문제로 대두되고 있는 코로나 블루와 같은 우울증이 해소 될것입니다.
-
+Today, we are going through a lack of communication due to the noncontact era. This atmosphere is causing countless numbers of pessimistic social problems, the major one being depressions, also known as Corona Blue. For this reason, we have decided to develop an application to endorse connections amongst people. This project aims at students. The goal is to help people straightforwardly make appointments with others using private accounts that one can create with their personal information. The users can comfortably and rapidly make new appointments with their friends on the main page and effectively manage those appointments with various tools provided in the application.
 <br>
 <br>
 <br>

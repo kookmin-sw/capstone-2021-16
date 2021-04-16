@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "384098041912",
+    "firebase_url": "https://yaksok-4207d-default-rtdb.firebaseio.com",
     "project_id": "yaksok-4207d",
     "storage_bucket": "yaksok-4207d.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "384098041912-h0o8cm1jujt0a677ee8k5p04ttimss3h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.app",
+            "certificate_hash": "ca62d994670a120c690187882fb511694560d22a"
+          }
+        },
         {
           "client_id": "384098041912-41ij7k0c96apsd50cu4tv9u78j708bv6.apps.googleusercontent.com",
           "client_type": 3
