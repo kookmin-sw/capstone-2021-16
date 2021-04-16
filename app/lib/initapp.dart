@@ -4,9 +4,8 @@ import 'package:flutter/material.dart';
 
 class initApp extends StatelessWidget {
   const initApp({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+     @override
+     Widget build(BuildContext context) {
     return FutureBuilder(
       future: Firebase.initializeApp(),
       builder: (context, snapshot) {
@@ -21,5 +20,5 @@ class initApp extends StatelessWidget {
         return CircularProgressIndicator();
       },
     );
-  }
+     }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'message.dart';
 import 'notification.dart';
+import 'package:date_time_picker/date_time_picker.dart';
 
 class AddPromise extends StatefulWidget {
   AddPromise({Key key}) : super(key: key);
@@ -263,30 +264,29 @@ class _AddPromiseState extends State<AddPromise> {
             // 날짜 설정
             color: Colors.white60,
             margin: EdgeInsets.only(top: 20, left: 30, right: 30),
-            child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                      alignment: Alignment.centerLeft,
-                      child: TextButton(
-                          child: Text("장소"),
-                          style: TextButton.styleFrom(
-                            textStyle: TextStyle(fontSize: 20),
-                          ))),
-                  Container(
-                      margin: EdgeInsets.only(left: 220),
-                      alignment: Alignment.centerRight,
-                      child: Switch(
-                        value: place,
-                        onChanged: (value) {
-                          setState(() {
-                            place = value;
-                          });
-                        },
-                        activeTrackColor: Colors.green,
-                        activeColor: Colors.white10,
-                      ))
-                ])),
+            child: DateTimePicker(
+              type: DateTimePickerType.dateTimeSeparate,
+              dateMask: 'd MMM, yyyy',
+              initialValue: DateTime.now().toString(),
+              firstDate: DateTime(2000),
+              lastDate: DateTime(2100),
+              icon: Icon(Icons.event),
+              dateLabelText: 'Date',
+              timeLabelText: "Hour",
+              selectableDayPredicate: (date) {
+              // Disable weekend days to select from the calendar
+              if (date.weekday == 6 || date.weekday == 7) {
+                return false;
+              }
+              return true;
+            },
+            onChanged: (val) => print(val),
+             validator: (val) {
+              print(val);
+              return null;
+              },
+              onSaved: (val) => print(val),
+            )),
         Container(
             margin: EdgeInsets.only(top: 20, left: 30, right: 30),
             color: Colors.white60,
