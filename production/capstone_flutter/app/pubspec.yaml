@@ -1,0 +1,38 @@
+name: app
+description: A new Flutter project.
+
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  syncfusion_localizations: ^18.1.36
+  cupertino_icons: ^1.0.2
+  flutter_svg: ^0.19.3
+  syncfusion_flutter_calendar: ^18.4.48
+  
+  firebase_core: ^1.0.2
+  firebase_auth: ^1.0.1
+  google_sign_in: ^5.0.1
+  provider: ^5.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  # firebase_core: #firebase 추가
+  firebase_analytics:
+  firebase_database:
+  firebase_messaging:
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/svg/
