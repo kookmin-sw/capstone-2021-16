@@ -440,11 +440,7 @@ class _AddPromiseState extends State<AddPromise> {
             color: Colors.grey,
             child: TextButton(
                 child: Text("약속 추가하기"),
-                onPressed: () {setState(() {
-                  appointments.add(Appointment(
-
-                  ))
-                });,
+                );,
                 style: TextButton.styleFrom(
                   textStyle: TextStyle(fontSize: 20),
                 )))
