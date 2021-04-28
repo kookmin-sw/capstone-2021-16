@@ -5,6 +5,7 @@ import 'package:app/pages/home.dart';
 import 'package:app/pages/profile.dart';
 
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import './data/memo.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -21,7 +22,7 @@ class _AppState extends State<App> {
   DatabaseReference reference;
   String _databaseURL = 'https://yaksok-4207d-default-rtdb.firebaseio.com/';
   List<Memo> memos = List();
-
+  final GoogleSignIn _googleSignIn = new GoogleSignIn();
   int _currentPageIndex; // 페이지 인덱스
 
   @override // 데이터 다루는 곳
@@ -38,6 +39,9 @@ class _AppState extends State<App> {
         memos.add(Memo.fromSnapshot(event.snapshot));
       });
     });
+
+    GoogleSignInAccount currentUser = _googleSignIn.currentUser;
+    print(currentUser);
   }
 
   /// 네비게이션 분기하는 로직
