@@ -15,19 +15,20 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg: ^0.19.3
   syncfusion_flutter_calendar: ^18.4.48
-  firebase_database: ^6.1.1
+  date_time_picker: ^2.0.0
+  google_place: ^0.4.0
+  flutter_dotenv: ^3.1.0
   firebase_core: ^1.0.2
   firebase_auth: ^1.0.1
   google_sign_in: ^5.0.1
-  shared_preferences: ^2.0.5
-  cloud_firestore: ^1.0.3
+  provider: ^5.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   # firebase_core: #firebase 추가
   firebase_analytics:
-  # firebase_database:
+  firebase_database:
   firebase_messaging:
 
 flutter:
