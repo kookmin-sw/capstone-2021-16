@@ -1,12 +1,11 @@
-import 'package:app/route.dart';
+import 'package:app/pages/login.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class initApp extends StatelessWidget {
   const initApp({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+     @override
+     Widget build(BuildContext context) {
     return FutureBuilder(
       future: Firebase.initializeApp(),
       builder: (context, snapshot) {
@@ -16,10 +15,10 @@ class initApp extends StatelessWidget {
           );
         }
         if (snapshot.connectionState == ConnectionState.done) {
-          return routePage();
+          return Login();
         }
         return CircularProgressIndicator();
       },
     );
-  }
+     }
 }

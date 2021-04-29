@@ -1,7 +1,7 @@
 import 'package:app/app.dart';
 import 'package:app/initapp.dart';
 import 'package:app/pages/login.dart';
-import 'package:app/route.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         // primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: App(),
+      home: initApp(),
     );
   }
 }
