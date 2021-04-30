@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-
+import 'addpromise.dart';
 import 'message.dart';
 import 'notification.dart';
 
@@ -31,14 +31,16 @@ class _CalendarState extends State<Calendar> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MessagesList()), // Move to Message
+                MaterialPageRoute(
+                    builder: (context) => MessagesList()), // Move to Message
               );
             }, icon: Image.asset('assets/images/message.png')),
         IconButton(
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => NotesList()), // Move to Notice
+                MaterialPageRoute(
+                    builder: (context) => NotesList()), // Move to Notice
               );
             }, icon: Image.asset('assets/images/bell.png'))
       ], // 가운데 이름
@@ -54,30 +56,69 @@ class _CalendarState extends State<Calendar> {
       home: Scaffold(
         appBar: _appbarWidget(),
         body: SfCalendar(
-          view: CalendarView.week, //주별로 달력을 보여줌
-          dataSource: _getCalendarDataSource(),
+          view: CalendarView.month, //주별로 달력을 보여줌
+          allowedViews: <CalendarView>
+          [
+            CalendarView.day,
+            CalendarView.week,
+            CalendarView.month,
+            CalendarView.schedule
+          ],
+          showDatePickerButton: true,
+          allowViewNavigation: true,
+          dataSource: MeetingDataSource(_getDataSource()),
         ),
       ),
     );
   }
+}
 
-  _AppointmentDataSource _getCalendarDataSource() {
-    List<Appointment> appointments = <Appointment>[];
-    appointments.add(Appointment(
-      startTime: DateTime(2021, 03, 08, 11),
-      endTime: DateTime(2021, 3, 8, 12),
-      subject: 'Meeting',
-      color: Colors.blue,
-      startTimeZone: '',
-      endTimeZone: '',
-    ));
+List<Meeting> _getDataSource() {
+  final List<Meeting> meetings = <Meeting> [];
+  final DateTime today = DateTime.now();
+  final DateTime startTime = DateTime(today.year, today.month, today.day, 11,0,0);
+  final DateTime endTime = DateTime(today.year, today.month, today.day, 12,0,0);
+  meetings.add(Meeting('meeting', startTime, endTime, const Color(0xFF0F8644), false));
+  return meetings;
+}
 
-    return _AppointmentDataSource(appointments);
+class MeetingDataSource extends CalendarDataSource {
+  MeetingDataSource(List<Meeting> source) {
+    appointments = source;
+  }
+
+  @override
+  DateTime getStartTime(int index) {
+    return appointments[index].from;
+  }
+
+  @override
+  DateTime getEndTime(int index) {
+    return appointments[index].to;
+  }
+
+  @override
+  String getSubject(int index) {
+    return appointments[index].eventName;
+  }
+
+  @override
+  Color getColor(int index) {
+    return appointments[index].background;
+  }
+
+  @override
+  bool isAllDay(int index) {
+    return appointments[index].isAllDay;
   }
 }
 
-class _AppointmentDataSource extends CalendarDataSource {
-  _AppointmentDataSource(List<Appointment> source) {
-    appointments = source;
-  }
+class Meeting {
+  Meeting(this.eventName, this.from, this.to, this.background, this.isAllDay);
+
+  String eventName;
+  DateTime from;
+  DateTime to;
+  Color background;
+  bool isAllDay;
 }
