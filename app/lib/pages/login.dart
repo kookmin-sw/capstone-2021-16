@@ -58,7 +58,7 @@ class _LoginState extends State<Login> {
   Widget googleSignButton() {
     return GestureDetector(
       onTap: () {
-        print('구글 로그인 버트느');
+        print('구글 로그인 버튼');
         signInWithGoogle();
         // saveUserInfoToDatabase();
       },
