@@ -50,7 +50,6 @@ class _FriendsState extends State<Friends> {
                 }
               });
             },
-
              */
           );
         });

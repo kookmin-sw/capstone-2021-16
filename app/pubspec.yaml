@@ -17,13 +17,10 @@ dependencies:
   shared_preferences:
   flutter_svg: ^0.19.3
   syncfusion_flutter_calendar: ^18.4.48
-<<<<<<< HEAD
 
-=======
   date_time_picker: ^2.0.0
   google_place: ^0.4.0
   flutter_dotenv: ^3.1.0
->>>>>>> 4cd894e2882f7993fc6faaf9ca1ac8ab499ce3ae
   firebase_core: ^1.0.2
   firebase_auth: ^1.0.1
   google_sign_in: ^5.0.1
