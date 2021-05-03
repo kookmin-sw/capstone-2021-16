@@ -3,8 +3,10 @@ import 'package:app/pages/calendar.dart';
 import 'package:app/pages/friends.dart';
 import 'package:app/pages/home.dart';
 import 'package:app/pages/profile.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import './data/memo.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -22,6 +24,9 @@ class _AppState extends State<App> {
   String _databaseURL = 'https://yaksok-4207d-default-rtdb.firebaseio.com/';
   List<Memo> memos = List();
 
+  // 구글 로그인 정보
+  final FirebaseAuth _auth = FirebaseAuth.instance; // 현재 로그인 정보 받기 위한 것
+  String _currentUserUid;
   int _currentPageIndex; // 페이지 인덱스
 
   @override // 데이터 다루는 곳
@@ -37,6 +42,15 @@ class _AppState extends State<App> {
       setState(() {
         memos.add(Memo.fromSnapshot(event.snapshot));
       });
+    });
+
+    _auth.authStateChanges().listen((User user) {
+      // _currentUserUid = user;
+      // _currentUser = user;
+      List<UserInfo> userInfo = user.providerData; // 구글 유저정보
+      // 현재 유저 uid 가져오기 추후에 페이지로 넘길 것
+      print(userInfo[0].uid); // 구글 uid
+      _currentUserUid = userInfo[0].uid;
     });
   }
 
@@ -105,3 +119,5 @@ class _AppState extends State<App> {
     );
   }
 }
+
+class FirebaseUser {}
