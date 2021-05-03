@@ -26,7 +26,7 @@ class _AppState extends State<App> {
 
   // 구글 로그인 정보
   final FirebaseAuth _auth = FirebaseAuth.instance; // 현재 로그인 정보 받기 위한 것
-  String _currentUserUid;
+  String _currentUserUid; // 구글 UID : ( Home, Profile, Addpromise 등) 에 넘길 uid
   int _currentPageIndex; // 페이지 인덱스
 
   @override // 데이터 다루는 곳
@@ -45,7 +45,6 @@ class _AppState extends State<App> {
     });
 
     _auth.authStateChanges().listen((User user) {
-      // _currentUserUid = user;
       // _currentUser = user;
       List<UserInfo> userInfo = user.providerData; // 구글 유저정보
       // 현재 유저 uid 가져오기 추후에 페이지로 넘길 것
@@ -70,7 +69,7 @@ class _AppState extends State<App> {
         return Calendar(); // 캘린더 페이지
         break;
       case 4:
-        return Profile(); // 프로필 페이지
+        return Profile(currentUserUid: _currentUserUid); // 프로필 페이지
         break;
     }
   }
@@ -119,5 +118,3 @@ class _AppState extends State<App> {
     );
   }
 }
-
-class FirebaseUser {}
