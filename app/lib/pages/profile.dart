@@ -30,7 +30,7 @@ class _ProfileState extends State<Profile> {
     });
     Navigator.of(context).pushAndRemoveUntil(
         MaterialPageRoute(builder: (context) => Login()),
-        (Route<dynamic> route) => false);
+            (Route<dynamic> route) => false);
   }
 
   @override
@@ -73,23 +73,61 @@ class _ProfileState extends State<Profile> {
     );
   }
 
+  Widget _buildCard(BuildContext context) {
+    return Card(
+          child: ListTile(
+        //leading: Image.network('https://d1nhio0ox7pgb.cloudfront.net/_img/o_collection_png/green_dark_grey/512x512/plain/user.png'),
+          leading: Image.asset("assets/images/user.png"),
+            title: Text('함석민'),
+           subtitle: Text('hahmsm@kookmin.ac.kr'),
+
+        trailing: IconButton(
+          icon: Icon(Icons.settings),
+          onPressed: () {
+            // Navigator.pushNamed(context, '/profile-edit', arguments: user);
+          },
+        ),
+      ),
+
+    );
+  }
+
+  Widget _buildBody(BuildContext context) {
+    return SingleChildScrollView(
+      child: Container(
+        padding: EdgeInsets.all(10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            _buildCard(context),
+            //_buildSignOut(context),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: _appbarWidget(),
         body: Container(
-          child: Center(
-            child: Column(
-              children: [
-                RaisedButton(
-                  onPressed: () {
-                    print('로그아웃');
-                    _handleSignOut();
-                  },
-                  child: Text('로그아웃'),
-                ),
-              ],
-            ),
-          ),
+            child: Center(
+              child: Column(
+                children: [
+                  _buildBody(context),
+                  RaisedButton(
+                    onPressed: () {
+                      print('로그아웃');
+                      _handleSignOut();
+                    },
+                    child: Text('로그아웃'),
+                  ),
+                ],
+              ),
+            )
         ));
   }
 }
+
+
