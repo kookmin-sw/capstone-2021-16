@@ -129,11 +129,38 @@ class _ProfileState extends State<Profile> {
             print(datas); // 데이터 받아오기
             return Center(
               child: Container(
-                child: Row(
+                height: MediaQuery.of(context).size.height *
+                    0.6, // 상단 카테코리 (확정된 약속, 나의 약속, 약속찾기)
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  // 박스 Radius 설정
+                  color: Color(0xffffffff),
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(40),
+                    bottomRight: Radius.circular(40),
+                  ),
+                ),
+                child: Column(
                   children: [
+                    SizedBox(
+                      width: 0.0,
+                      height: 20.0,
+                    ),
                     Image.network(datas['url']),
-                    Text(datas['username']),
-                    Text(datas['email']),
+                    SizedBox(
+                      width: 0.0,
+                      height: 20.0,
+                    ),
+                    Text(datas['username'],
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20)),
+                    SizedBox(
+                      width: 0.0,
+                      height: 20.0,
+                    ),
+                    Text(datas['email'],
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20)),
                   ],
                 ),
               ),
@@ -150,20 +177,22 @@ class _ProfileState extends State<Profile> {
     return Scaffold(
         appBar: _appbarWidget(),
         body: Container(
+            color: Color(0xff23D990),
             child: Center(
-          child: Column(
-            children: [
-              // _buildBody(context),
-              _createProfileView(),
-              RaisedButton(
-                onPressed: () {
-                  print('로그아웃');
-                  _handleSignOut();
-                },
-                child: Text('로그아웃'),
+              child: Column(
+                children: [
+                  // _buildBody(context),
+                  _createProfileView(),
+
+                  RaisedButton(
+                    onPressed: () {
+                      print('로그아웃');
+                      _handleSignOut();
+                    },
+                    child: Text('로그아웃'),
+                  ),
+                ],
               ),
-            ],
-          ),
-        )));
+            )));
   }
 }
