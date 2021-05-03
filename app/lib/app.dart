@@ -118,5 +118,3 @@ class _AppState extends State<App> {
     );
   }
 }
-
-class FirebaseUser {}
