@@ -7,6 +7,7 @@ import 'package:date_time_picker/date_time_picker.dart';
 import 'package:google_place/google_place.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'calendar.dart';
+import 'package:permission_handler/permission_handler.dart';
 // void main() async {
 //   WidgetsFlutterBinding.ensureInitialized();
 //   await DotEnv().load('.env');
@@ -19,6 +20,10 @@ class AddPromise extends StatefulWidget {
 
   @override
   _AddPromiseState createState() => _AddPromiseState();
+}
+
+void checkPermission() async{
+  Permission.location.request(); // 장소 권한 요청
 }
 
 class _AddPromiseState extends State<AddPromise> {
@@ -163,6 +168,7 @@ class _AddPromiseState extends State<AddPromise> {
                           alignment: Alignment.centerRight,
                           child:TextButton(
                               onPressed: () {
+                                checkPermission();
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(builder: (context) => selectplace()), // Move to Message
