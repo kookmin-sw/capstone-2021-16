@@ -1,3 +1,4 @@
+import 'package:app/data/memo.dart';
 import 'package:flutter/material.dart';
 import 'selectplace.dart';
 import 'message.dart';
@@ -7,6 +8,7 @@ import 'package:date_time_picker/date_time_picker.dart';
 import 'package:google_place/google_place.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'calendar.dart';
+import 'package:firebase_database/firebase_database.dart';
 // void main() async {
 //   WidgetsFlutterBinding.ensureInitialized();
 //   await DotEnv().load('.env');
@@ -22,6 +24,28 @@ class AddPromise extends StatefulWidget {
 }
 
 class _AddPromiseState extends State<AddPromise> {
+  FirebaseDatabase _database;
+  DatabaseReference reference;
+  String _databaseURL = 'https://yaksok-4207d-default-rtdb.firebaseio.com/';
+  List<Memo> memos = List();
+
+  int _currentPageIndex; // 페이지 인덱스
+
+  @override // 데이터 다루는 곳
+  void initState() {
+    super.initState();
+    _currentPageIndex = 0; //현재 페이지 인덱스 ( 홈 )
+
+    _database = FirebaseDatabase(databaseURL: _databaseURL);
+    reference = _database.reference().child('memo');
+
+    reference.onChildAdded.listen((event) {
+      print(event.snapshot.value.toString());
+      setState(() {
+        memos.add(Memo.fromSnapshot(event.snapshot));
+      });
+    });
+  }
   Widget _appbarWidget() {
     return AppBar(
       // AppBar
@@ -56,7 +80,7 @@ class _AddPromiseState extends State<AddPromise> {
       ], // 가운데 이름
     );
   }
-  final _controller = TextEditingController();
+  final contentController = TextEditingController();
   String promise = '';
   bool repeat = false;
   bool place = false;
@@ -75,7 +99,7 @@ class _AddPromiseState extends State<AddPromise> {
               margin: EdgeInsets.only(top: 20, left: 30, right: 30),
               height: 150,
               child: TextField(
-                controller: _controller,
+                controller: contentController,
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.black)),
@@ -93,6 +117,7 @@ class _AddPromiseState extends State<AddPromise> {
                 color: Colors.white60,
                 margin: EdgeInsets.only(top: 20, left: 30, right: 30),
                 child: DateTimePicker(
+                  // controller: dateController,
                   type: DateTimePickerType.dateTimeSeparate,
                   dateMask: 'd MMM, yyyy',
                   initialValue: DateTime.now().toString(),
@@ -195,6 +220,18 @@ class _AddPromiseState extends State<AddPromise> {
                 alignment: Alignment.centerRight,
                 color: Colors.grey,
                 child: TextButton(
+                    // onPressed: () {
+                    //   widget.reference
+                    //       .push()
+                    //       .set(Memo(
+                    //       date.value.text,
+                    //       contentController.value.text,
+                    //       DateTime.now().toIso8601String())
+                    //       .toJson())
+                    //       .then((_) {
+                    //     Navigator.of(context).pop();
+                    //   });
+                    // },
                     child: Text("약속 추가하기"),
                     style: TextButton.styleFrom(
                       textStyle: TextStyle(fontSize: 20),
