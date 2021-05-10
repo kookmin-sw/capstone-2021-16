@@ -13,7 +13,6 @@ dependencies:
     sdk: flutter
   syncfusion_localizations: ^18.1.36
   cupertino_icons: ^1.0.2
-  cloud_firestore:
   shared_preferences:
   flutter_svg: ^0.19.3
   syncfusion_flutter_calendar: ^18.4.48
@@ -21,9 +20,11 @@ dependencies:
   google_place: ^0.4.0
   flutter_dotenv: ^3.1.0
   firebase_core: ^1.0.2
-  firebase_auth: ^1.0.1
+  firebase_auth: ^1.1.2
   google_sign_in: ^5.0.1
   provider: ^5.0.0
+  cloud_firestore: ^1.0.7
+  
 
 dev_dependencies:
   flutter_test:

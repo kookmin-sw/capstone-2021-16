@@ -17,7 +17,7 @@ class _agendasListState extends State<agendasList> {
 
   List<agendas> notes = [
     agendas([4, 28], "운동", [3, 5]),
-    agendas([4, 29], "에빈트", [1, 3]),
+    agendas([4, 29], "이벤트", [1, 3]),
     agendas([4, 30], "소모임", [1, 3]),
   ];
 
@@ -30,7 +30,7 @@ class _agendasListState extends State<agendasList> {
               children: const <Widget> [
                 DrawerHeader(
                   decoration: BoxDecoration(
-                    color: Color(0xff18A0FB),
+                    color: Color(0xff18a0fb),
                   ),
                   child: Text(
                       '카테고리',
