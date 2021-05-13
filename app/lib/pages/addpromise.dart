@@ -2,18 +2,37 @@ import 'package:app/data/memo.dart';
 import 'package:flutter/material.dart';
 import 'selectplace.dart';
 import 'message.dart';
+import 'login.dart';
 import 'notification.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:typed_data';
 import 'package:date_time_picker/date_time_picker.dart';
 import 'package:google_place/google_place.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'calendar.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_database/firebase_database.dart';
 // void main() async {
 //   WidgetsFlutterBinding.ensureInitialized();
 //   await DotEnv().load('.env');
 //   runApp(MyApp());
 // }
+
+// final promiseReference = FirebaseFirestore.instance.collection('promises');
+
+class Prom {
+  String promise_title = ''; //약속 제목
+  String promise = ''; // 약속 내용
+  String select_place = '';
+  String select_num = '';
+  bool repeat = false; // 반복
+  bool place = false; //장소 등록 여부
+  var date; //날짜
+  Prom(this.promise_title, this.promise);
+  // , this.select_place, this.select_num, this.repeat, this.place, this.date
+}
+
 
 
 class AddPromise extends StatefulWidget {
@@ -28,6 +47,7 @@ class _AddPromiseState extends State<AddPromise> {
   DatabaseReference reference;
   String _databaseURL = 'https://yaksok-4207d-default-rtdb.firebaseio.com/';
   List<Memo> memos = List();
+  // Firestore firestore = Firestore.instance;
 
   int _currentPageIndex; // 페이지 인덱스
 
@@ -81,7 +101,7 @@ class _AddPromiseState extends State<AddPromise> {
     );
   }
   final contentController = TextEditingController();
-  final contentController2 = TextEditingController();
+  var contentController2 = TextEditingController();
   final contentController3 = TextEditingController();
   final contentController4 = TextEditingController();
   final _category = ['스터디', '이벤트', '운동'];
@@ -95,6 +115,9 @@ class _AddPromiseState extends State<AddPromise> {
   var date; //날짜
   GooglePlace googlePlace = GooglePlace('AIzaSyAqbd581f-OHohqrxC8kdJ_Fje_5S212Ms');
   List<AutocompletePrediction> predictions = [];
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -305,23 +328,24 @@ class _AddPromiseState extends State<AddPromise> {
                 margin: EdgeInsets.only(top: 30, right: 30, left: 240, bottom: 30),
                 color: Colors.grey,
                 child: TextButton(
-                    // onPressed: () {
-                    //   widget.reference
-                    //       .push()
-                    //       .set(Memo(
-                    //       date.value.text,
-                    //       contentController.value.text,
-                    //       DateTime.now().toIso8601String())
-                    //       .toJson())
-                    //       .then((_) {
-                    //     Navigator.of(context).pop();
-                    //   });
-                    // },
+                    onPressed: () {
+                      // final prom = Prom(doc['promise_title'], doc['promise']);
+                      _addProm(Prom(contentController.text, contentController2.text));
+                    },
                     child: Text("약속 추가하기"),
                     style: TextButton.styleFrom(
                       textStyle: TextStyle(fontSize: 20),
                     )))
           ],
+
         ));
   }
+  void _addProm(Prom prom) {
+    FirebaseFirestore.instance
+        .collection('promises')
+        .add({'title': prom.promise_title, 'promise': prom.promise});
+
+  }
 }
+
+

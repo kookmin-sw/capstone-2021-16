@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:app/blocs/application_bloc.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 void main() {
   runApp(MyApp());
 }
