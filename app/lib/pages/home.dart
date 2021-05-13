@@ -1,18 +1,25 @@
 import 'package:app/repository/contents_repository.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'message.dart';
 import 'notification.dart';
 
+final userReference = FirebaseFirestore.instance.collection('users');
+
 class Home extends StatefulWidget {
-  Home({Key key}) : super(key: key);
+  String currentUserUid;
+
+  Home({Key key, @required this.currentUserUid}) : super(key: key);
 
   @override
-  _HomeState createState() => _HomeState();
+  _HomeState createState() => _HomeState(currentUserUid);
 }
 
 class _HomeState extends State<Home> {
+  String currentUserUid;
+  _HomeState(this.currentUserUid);
   ContentsRepository contentsRepository;
-  List<Map<String, String>> datas = [];
+  Map<String, dynamic> datas;
   String currentMenu; // 초기 데이터는 확정된 약속
   Color btn_1_color,
       btn_2_color,
@@ -25,12 +32,14 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     currentMenu = "confirm";
+    currentUserUid = widget.currentUserUid;
     btn_1_color = Color(0xffffffff);
     btn_2_color = Color(0xff18A0FB);
     btn_3_color = Color(0xff18A0FB);
     txt_1_color = Color(0xff000000);
     txt_2_color = Color(0xffffffff);
     txt_3_color = Color(0xffffffff);
+
     // dynamic_txt = "확정된 약속 리스트";
   }
 
@@ -45,7 +54,7 @@ class _HomeState extends State<Home> {
   }
 
   _makeDataList(List<Map<String, String>> data) {
-    datas = data;
+    // datas = data;
     return ListView.builder(
       // 리스트뷰
       padding: const EdgeInsets.symmetric(vertical: 10), // 전체에 Padiing
@@ -231,30 +240,31 @@ class _HomeState extends State<Home> {
   }
 
   Widget _listWidget() {
-    return FutureBuilder(
+    return StreamBuilder(
         //데이터 API 통신 ( contents_repository에 있는 데이터를 불러옴)
-        future: _loadContents(),
+        stream: FirebaseFirestore.instance
+            .collection("users")
+            .doc(currentUserUid)
+            .collection("promises")
+            .snapshots(),
         builder: (context, snapshot) {
-          //snapshot null check를 해줘야함
-          print(snapshot.data);
-          if (snapshot.connectionState != ConnectionState.done) {
-            return Center(child: CircularProgressIndicator()); //데이터가 안왔을때 로딩처리
-          }
-
-          if (snapshot.hasError) {
-            // 에러 로직처리
-            return Center(
-              child: Text("데이터 오류"),
-            );
-          }
-
-          if (snapshot.hasData) {
+          if (!snapshot.hasData) {
             // 데이터가 있을 때만 데이터를 넘겨줌
-            return _makeDataList(snapshot.data);
-          }
+            // DocumentSnapshot ds = snapshot.data;
+            //
+            // datas = ds.data();
+            // documents.map((DocumentSnapshot eachDocument) =>
+            // {print(eachDocument.data())});
+            // print(documents);
+            // print(snapshot.data); // 데이터 받아오기
 
+            // return _makeDataList(snapshot.data);
+            return CircularProgressIndicator();
+          }
+          // List<DocumentSnapshot> documents = snapshot.data.document;
+          print(snapshot.data);
           return Center(
-            child: Text("데이터가 없습니다."),
+            child: Text("데이터"),
           );
         });
     //

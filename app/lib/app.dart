@@ -57,7 +57,7 @@ class _AppState extends State<App> {
   Widget _bodyWidget() {
     switch (_currentPageIndex) {
       case 0:
-        return Home(); // 홈 화면
+        return Home(currentUserUid: _currentUserUid); // 홈 화면
         break;
       case 1:
         return Friends(); // 친구 목록 페이지
@@ -118,5 +118,3 @@ class _AppState extends State<App> {
     );
   }
 }
-
-class FirebaseUser {}
