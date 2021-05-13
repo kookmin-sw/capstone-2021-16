@@ -79,7 +79,8 @@ class _selectplaceState extends State<selectplace> {
                       },
                     )
                 ),
-                if(applicationBloc.searchResults != null && applicationBloc.searchResults.length != 0)
+                if(applicationBloc.searchResults != null &&
+                    applicationBloc.searchResults.length != 0)
                   Container(
                     height:300.0,
                     width: double.infinity,
@@ -88,6 +89,8 @@ class _selectplaceState extends State<selectplace> {
                       backgroundBlendMode: BlendMode.darken
                   ),
                 ),
+                if(applicationBloc.searchResults != null &&
+                    applicationBloc.searchResults.length != 0)
                 Container(
                   height: 300.0,
                   child: ListView.builder(
