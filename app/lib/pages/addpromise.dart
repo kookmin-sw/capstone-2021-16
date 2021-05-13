@@ -81,34 +81,93 @@ class _AddPromiseState extends State<AddPromise> {
     );
   }
   final contentController = TextEditingController();
-  String promise = '';
-  bool repeat = false;
-  bool place = false;
-  var date;
+  final contentController2 = TextEditingController();
+  final contentController3 = TextEditingController();
+  final contentController4 = TextEditingController();
+  final _category = ['스터디', '이벤트', '운동'];
+  var _selectedValue = '스터디';
+  String promise_title = ''; //약속 제목
+  String promise = ''; // 약속 내용
+  String select_place = '';
+  String select_num = '';
+  bool repeat = false; // 반복
+  bool place = false; //장소 등록 여부
+  var date; //날짜
   GooglePlace googlePlace = GooglePlace('AIzaSyAqbd581f-OHohqrxC8kdJ_Fje_5S212Ms');
   List<AutocompletePrediction> predictions = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: _appbarWidget(),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+        body:
+          ListView(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(top:20, left:30, right: 30),
+                height: 50,
+                child: Row(
+                  children: [
+                    TextButton(
+                        child: Text("약속 카테고리"),
+                        style: TextButton.styleFrom(
+                          textStyle: TextStyle(fontSize: 20),
+                        )),
+                    Container(
+                      margin: EdgeInsets.only(left: 130),
+                      child: DropdownButton(
+                       value: _selectedValue, items: _category.map(
+                           (value){
+                         return DropdownMenuItem(
+                           value: value, child: Text(value),
+                         );
+                       },
+                     ).toList(),
+                       onChanged: (value){
+                         setState(() {
+                           _selectedValue = value;
+                         });
+                       },
+
+                     ),
+
+                    )
+                  ],
+                )
+              ),
+            Container(
+              // 약속 입력
+              margin: EdgeInsets.only(top: 20, left: 30, right: 30),
+              height: 50,
+              child: TextField(
+                controller: contentController,
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black)),
+                  hintText: '약속 제목을 입력하세요.',
+                ),
+                style: TextStyle(fontSize: 20),
+                maxLines: 1,
+                onChanged: (Text) {
+                  promise_title = Text; // 현재 Textfield의 내용을 저장
+                  //print("$Text"); // 확인
+                },
+              ),
+            ),
             Container(
               // 약속 입력
               margin: EdgeInsets.only(top: 20, left: 30, right: 30),
               height: 150,
               child: TextField(
-                controller: contentController,
+                controller: contentController2,
                 decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.black)),
                   hintText: '약속 내용을 입력하세요.',
                 ),
                 style: TextStyle(fontSize: 20),
-                maxLines: 5,
-                onChanged: (Text) {
-                  promise = Text; // 현재 Textfield의 내용을 저장
+                maxLines: 3,
+                onChanged: (Text2) {
+                  promise = Text2; // 현재 Textfield의 내용을 저장
                   //print("$Text"); // 확인
                 },
               ),
@@ -173,51 +232,77 @@ class _AddPromiseState extends State<AddPromise> {
               // 장소 여부 설정
                 color: Colors.white60,
                 margin: EdgeInsets.only(top: 20, left: 30, right: 30),
-                child: Row(
+                child:
+                  Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
+                    children: [
+                      Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                                alignment: Alignment.centerLeft,
+                                child: TextButton(
+                                    child: Text("장소"),
+                                    style: TextButton.styleFrom(
+                                      textStyle: TextStyle(fontSize: 20),
+                                    ))),
+                            Container(
+                                margin: EdgeInsets.only(left: 180),
+                                alignment: Alignment.centerRight,
+                                child:TextButton(
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => selectplace()), // Move to Message
+                                      );
+                                    },
+                                    child: Text("지도 보기"),
+                                    style: TextButton.styleFrom(
+                                      textStyle: TextStyle(fontSize: 20),
+                                    )
+                                )),
+                          ]),
                       Container(
-                          alignment: Alignment.centerLeft,
-                          child: TextButton(
-                              child: Text("장소"),
-                              style: TextButton.styleFrom(
-                                textStyle: TextStyle(fontSize: 20),
-                              ))),
-                      Container(
-                          margin: EdgeInsets.only(left: 180),
-                          alignment: Alignment.centerRight,
-                          child:TextButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) => selectplace()), // Move to Message
-                                );
-                              },
-                              child: Text("장소 추가"),
-                              style: TextButton.styleFrom(
-                                textStyle: TextStyle(fontSize: 20),
-                              )
-                          )),
-                    ])),
+                        margin: EdgeInsets.only(),
+                        child: TextField(
+                          controller: contentController3,
+                          decoration: InputDecoration(
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black)),
+                            hintText: '장소 입력',
+                          ),
+                          style: TextStyle(fontSize: 15),
+                          maxLines: 1,
+                          onChanged: (Text) {
+                            select_place = Text; // 현재 Textfield의 내용을 저장
+                            //print("$Text"); // 확인
+                          },
+                        ),
+                      ),
+                    ],
+                  )
+                 ),
             Container(
               // 모집인원 여부 설정
                 color: Colors.white60,
                 margin: EdgeInsets.only(top: 20, left: 30, right: 30),
-                child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                          alignment: Alignment.centerLeft,
-                          child: TextButton(
-                              child: Text("모집 인원"),
-                              style: TextButton.styleFrom(
-                                textStyle: TextStyle(fontSize: 20),
-                              ))),
-                    ])),
+                child:TextField(
+                  controller: contentController4,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black)),
+                    hintText: '모집 인원',
+                  ),
+                  style: TextStyle(fontSize: 15),
+                  maxLines: 1,
+                  onChanged: (Text) {
+                    select_num = Text; // 현재 Textfield의 내용을 저장
+                    //print("$Text"); // 확인
+                  },
+                ),),
             Container(
               //추가하기 버튼
-                margin: EdgeInsets.only(top: 30, right: 30, left: 240),
-                alignment: Alignment.centerRight,
+                margin: EdgeInsets.only(top: 30, right: 30, left: 240, bottom: 30),
                 color: Colors.grey,
                 child: TextButton(
                     // onPressed: () {
