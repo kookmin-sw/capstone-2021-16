@@ -8,9 +8,7 @@ final userReference = FirebaseFirestore.instance.collection('users');
 
 class Home extends StatefulWidget {
   String currentUserUid;
-
   Home({Key key, @required this.currentUserUid}) : super(key: key);
-
   @override
   _HomeState createState() => _HomeState(currentUserUid);
 }
@@ -20,6 +18,7 @@ class _HomeState extends State<Home> {
   _HomeState(this.currentUserUid);
   ContentsRepository contentsRepository;
   Map<String, dynamic> datas;
+  Stream<QuerySnapshot> currentStream;
   String currentMenu; // 초기 데이터는 확정된 약속
   Color btn_1_color,
       btn_2_color,
@@ -31,7 +30,9 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
+
     currentMenu = "confirm";
+
     currentUserUid = widget.currentUserUid;
     btn_1_color = Color(0xffffffff);
     btn_2_color = Color(0xff18A0FB);
@@ -39,18 +40,18 @@ class _HomeState extends State<Home> {
     txt_1_color = Color(0xff000000);
     txt_2_color = Color(0xffffffff);
     txt_3_color = Color(0xffffffff);
-
-    // dynamic_txt = "확정된 약속 리스트";
+    currentStream = FirebaseFirestore.instance
+        .collection("promises")
+        .where("confirm?", isEqualTo: true)
+        .snapshots();
+    dynamic_txt = "확정된 약속 리스트";
+    // print(currentUserUid);
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    contentsRepository = ContentsRepository(); // didchange에서 데이터 초기화
-  }
-
-  _loadContents() {
-    return contentsRepository.loadContentsData(currentMenu); // 데이터 불러오기
+    currentUserUid = widget.currentUserUid;
   }
 
   _makeDataList(List<Map<String, String>> data) {
@@ -104,6 +105,7 @@ class _HomeState extends State<Home> {
   }
 
   Widget _topContentWidget(Size size) {
+    // print(currentUserUid);
     return Container(
         height: size.height * 0.2, // 상단 카테코리 (확정된 약속, 나의 약속, 약속찾기)
         decoration: BoxDecoration(
@@ -175,6 +177,10 @@ class _HomeState extends State<Home> {
                         txt_2_color = Color(0xffffffff);
                         txt_3_color = Color(0xffffffff);
                         dynamic_txt = "확정된 약속 리스트";
+                        currentStream = FirebaseFirestore.instance
+                            .collection("promises")
+                            .where("confirm?", isEqualTo: true)
+                            .snapshots();
                       });
                     },
                   ),
@@ -202,6 +208,12 @@ class _HomeState extends State<Home> {
                         txt_2_color = Color(0xff000000);
                         txt_3_color = Color(0xffffffff);
                         dynamic_txt = "나의 약속 리스트";
+
+                        currentStream = FirebaseFirestore.instance
+                            .collection("promises")
+                            .where("writer", isEqualTo: currentUserUid)
+                            .where("confirm?", isEqualTo: false)
+                            .snapshots();
                       });
                     },
                   ),
@@ -229,6 +241,11 @@ class _HomeState extends State<Home> {
                         txt_2_color = Color(0xffffffff);
                         txt_3_color = Color(0xff000000);
                         dynamic_txt = "약속 찾기";
+                        currentStream = FirebaseFirestore.instance
+                            .collection("promises")
+                            .where("confirm?", isEqualTo: false)
+                            .where("writer", isNotEqualTo: currentUserUid)
+                            .snapshots();
                       });
                     },
                   ),
@@ -242,30 +259,29 @@ class _HomeState extends State<Home> {
   Widget _listWidget() {
     return StreamBuilder(
         //데이터 API 통신 ( contents_repository에 있는 데이터를 불러옴)
-        stream: FirebaseFirestore.instance
-            .collection("users")
-            .doc(currentUserUid)
-            .collection("promises")
-            .snapshots(),
+        stream: currentStream,
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            // 데이터가 있을 때만 데이터를 넘겨줌
-            // DocumentSnapshot ds = snapshot.data;
-            //
-            // datas = ds.data();
-            // documents.map((DocumentSnapshot eachDocument) =>
-            // {print(eachDocument.data())});
-            // print(documents);
-            // print(snapshot.data); // 데이터 받아오기
-
             // return _makeDataList(snapshot.data);
-            return CircularProgressIndicator();
+            return Center(
+              child: Text("약속이 없습니다."),
+            );
+          } else {
+            List<DocumentSnapshot> documents = snapshot.data.docs;
+            return ListView(
+              children: documents.map((document) {
+                return Center(
+                    child: Container(
+                  child: Text(
+                    document['title'],
+                  ),
+                ));
+              }).toList(),
+            );
+            // return Center(
+            //   child: Text("데이터"),
+            // );
           }
-          // List<DocumentSnapshot> documents = snapshot.data.document;
-          print(snapshot.data);
-          return Center(
-            child: Text("데이터"),
-          );
         });
     //
   }
@@ -318,6 +334,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+
     return MaterialApp(
       theme: ThemeData(
         primaryColor: Color(0xff18A0FB),
