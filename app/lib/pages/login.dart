@@ -43,8 +43,8 @@ class _LoginState extends State<Login> {
     DocumentSnapshot documentSnapshot =
         await userReference.doc(gCurrentUser.id).get();
     if (!documentSnapshot.exists) {
-      final username = await Navigator.push(
-          context, MaterialPageRoute(builder: (context) => CreateAccount()));
+      final username = await Navigator.push(context,
+          MaterialPageRoute(builder: (context) => CreateAccount())); // 닉네임 저장하기
       userReference.doc(gCurrentUser.id).set({
         'id': gCurrentUser.id,
         'profileNmae': gCurrentUser.displayName,
@@ -58,7 +58,7 @@ class _LoginState extends State<Login> {
   Widget googleSignButton() {
     return GestureDetector(
       onTap: () {
-        print('구글 로그인 버트느');
+        print('구글 로그인 버튼');
         signInWithGoogle();
         // saveUserInfoToDatabase();
       },
