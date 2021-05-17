@@ -122,19 +122,6 @@ class _AppState extends State<App> {
         ]);
   }
 
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     body: _bodyWidget(),
-  //     bottomNavigationBar: _bottomNavigationBarWidget(),
-  //     endDrawer: Drawer(
-  //       child: Text("슬라이드 메뉴"),
-  //     ),
-  //     drawerEnableOpenDragGesture: false,
-  //     endDrawerEnableOpenDragGesture: false,
-  //   );
-  // }
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
