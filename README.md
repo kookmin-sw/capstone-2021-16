@@ -82,7 +82,7 @@ Role : Front-End 개발
 
 **:point_right:함석민** <br>
 Student ID : 20163174 <br>
-Role : 팀장
+Role : PM
 
    <br>
    <br>
