@@ -24,7 +24,7 @@ class _AppState extends State<App> {
   String _databaseURL = 'https://yaksok-4207d-default-rtdb.firebaseio.com/';
   List<Memo> memos = List();
   Future<String> _calculation = Future<String>.delayed(
-    Duration(seconds: 1),
+    Duration(seconds: 2),
     () => 'Data Loaded',
   );
   // 구글 로그인 정보
