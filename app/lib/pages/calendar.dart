@@ -56,7 +56,7 @@ class _CalendarState extends State<Calendar> {
       home: Scaffold(
         appBar: _appbarWidget(),
         body: SfCalendar(
-          view: CalendarView.month, //주별로 달력을 보여줌
+          view: CalendarView.month, //월별로 달력을 보여줌
           allowedViews: <CalendarView>
           [
             CalendarView.day,
