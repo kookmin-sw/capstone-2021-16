@@ -23,7 +23,10 @@ class _AppState extends State<App> {
   DatabaseReference reference;
   String _databaseURL = 'https://yaksok-4207d-default-rtdb.firebaseio.com/';
   List<Memo> memos = List();
-
+  Future<String> _calculation = Future<String>.delayed(
+    Duration(seconds: 1),
+    () => 'Data Loaded',
+  );
   // 구글 로그인 정보
   final FirebaseAuth _auth = FirebaseAuth.instance; // 현재 로그인 정보 받기 위한 것
   String _currentUserUid; // 구글 UID : ( Home, Profile, Addpromise 등) 에 넘길 uid
@@ -32,32 +35,46 @@ class _AppState extends State<App> {
   @override // 데이터 다루는 곳
   void initState() {
     super.initState();
+
+    getData();
+
     _currentPageIndex = 0; //현재 페이지 인덱스 ( 홈 )
 
     _database = FirebaseDatabase(databaseURL: _databaseURL);
     reference = _database.reference().child('memo');
 
     reference.onChildAdded.listen((event) {
-      print(event.snapshot.value.toString());
+      // print(event.snapshot.value.toString());
       setState(() {
         memos.add(Memo.fromSnapshot(event.snapshot));
       });
     });
 
-    _auth.authStateChanges().listen((User user) {
+    // _auth.authStateChanges().listen((User user) {
+    //   // _currentUser = user;
+    //   List<UserInfo> userInfo = user.providerData; // 구글 유저정보
+    //   // 현재 유저 uid 가져오기 추후에 페이지로 넘길 것
+    //   // print(userInfo[0].uid); // 구글 uid
+    //   _currentUserUid = userInfo[0].uid;
+    // });
+  }
+
+  getData() async {
+    await _auth.authStateChanges().listen((User user) {
       // _currentUser = user;
       List<UserInfo> userInfo = user.providerData; // 구글 유저정보
       // 현재 유저 uid 가져오기 추후에 페이지로 넘길 것
-      print(userInfo[0].uid); // 구글 uid
+      // print(userInfo[0].uid); // 구글 uid
       _currentUserUid = userInfo[0].uid;
     });
   }
 
   /// 네비게이션 분기하는 로직
   Widget _bodyWidget() {
+    print(_currentUserUid);
     switch (_currentPageIndex) {
       case 0:
-        return Home(); // 홈 화면
+        return Home(currentUserUid: _currentUserUid); // 홈 화면
         break;
       case 1:
         return Friends(); // 친구 목록 페이지
@@ -107,14 +124,23 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _bodyWidget(),
-      bottomNavigationBar: _bottomNavigationBarWidget(),
-      endDrawer: Drawer(
-        child: Text("슬라이드 메뉴"),
-      ),
-      drawerEnableOpenDragGesture: false,
-      endDrawerEnableOpenDragGesture: false,
+    return FutureBuilder(
+      future: _calculation,
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return Scaffold(
+            body: _bodyWidget(),
+            bottomNavigationBar: _bottomNavigationBarWidget(),
+            endDrawer: Drawer(
+              child: Text("슬라이드 메뉴"),
+            ),
+            drawerEnableOpenDragGesture: false,
+            endDrawerEnableOpenDragGesture: false,
+          );
+        } else {
+          return Center(child: CircularProgressIndicator());
+        }
+      },
     );
   }
 }
