@@ -62,7 +62,7 @@ Today, we are going through a lack of communication due to the noncontact era. T
 
 :point_right:**김현서**   
    Student ID : 20175161   
-   Role : UI/UX 디자인, Front-End 개발
+   Role : UI/UX 디자인, Front-End 개발, DB연동
   <br>   
 
 :point_right:**이선용**<br>
