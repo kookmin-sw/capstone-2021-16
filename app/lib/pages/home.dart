@@ -1,3 +1,4 @@
+import 'package:app/pages/detailpage.dart';
 import 'package:app/repository/contents_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +57,6 @@ class _HomeState extends State<Home> {
         .then((DocumentSnapshot ds) {
       userdatas = ds.data();
     });
-    // print(datas);
   }
 
   Widget _topContentWidget(Size size) {
@@ -64,7 +64,6 @@ class _HomeState extends State<Home> {
         future: _calculation,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            print(userdatas);
             return Container(
                 height: size.height * 0.2, // 상단 카테코리 (확정된 약속, 나의 약속, 약속찾기)
                 decoration: BoxDecoration(
@@ -238,81 +237,102 @@ class _HomeState extends State<Home> {
             List<DocumentSnapshot> documents = snapshot.data.docs;
             return ListView(
               children: documents.map((document) {
-                return Container(
-                  padding: const EdgeInsets.symmetric(vertical: 5),
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          color: Colors.white,
-                          padding: const EdgeInsets.symmetric(vertical: 20),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Image.network(
-                                document["writerurl"],
-                                width: 32,
-                                height: 32,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    document['title'],
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16),
-                                  ),
-                                  SizedBox(
-                                    height: 5.0,
-                                    width: 0.0,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Image(
-                                        image: AssetImage(
-                                            'assets/images/location.png'),
-                                      ),
-                                      SizedBox(
-                                        height: 0.0,
-                                        width: 5.0,
-                                      ),
-                                      Text(
-                                        document['location'],
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 5.0,
-                                    width: 0.0,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Image(
-                                        image: AssetImage(
-                                            'assets/images/time.png'),
-                                      ),
-                                      SizedBox(
-                                        height: 0.0,
-                                        width: 5.0,
-                                      ),
-                                      Text(
-                                        document['date'],
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 0.0,
-                                width: 10.0,
-                              ),
-                              Text('인원')
-                            ],
+                return ListTile(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Detailpage(
+                                  promisedata: document.data(),
+                                  currentUserUid: this.currentUserUid,
+                                )));
+                  },
+                  title: Container(
+                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            color: Colors.white,
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Image.network(
+                                  document["writerurl"],
+                                  width: 32,
+                                  height: 32,
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      document['title'],
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 16),
+                                    ),
+                                    SizedBox(
+                                      height: 5.0,
+                                      width: 0.0,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Image(
+                                          image: AssetImage(
+                                              'assets/images/location.png'),
+                                        ),
+                                        SizedBox(
+                                          height: 0.0,
+                                          width: 5.0,
+                                        ),
+                                        Text(
+                                          document['location'],
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 5.0,
+                                      width: 0.0,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Image(
+                                          image: AssetImage(
+                                              'assets/images/time.png'),
+                                        ),
+                                        SizedBox(
+                                          height: 0.0,
+                                          width: 5.0,
+                                        ),
+                                        Text(
+                                          document['date'],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 0.0,
+                                  width: 10.0,
+                                ),
+                                Row(
+                                  children: [
+                                    Text(document['participants']
+                                        .length
+                                        .toString()),
+                                    SizedBox(
+                                      width: 10.0,
+                                    ),
+                                    Text('인원'),
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               }).toList(),
