@@ -67,7 +67,7 @@ class _LoginState extends State<Login> {
               SizedBox(width: 500),
               SizedBox(height: 150),
               Image.asset(
-                'assets/images/appicon.png',
+                'assets/images/loginappicon.png',
                 fit: BoxFit.fill,
                 height: 180,
               ),
