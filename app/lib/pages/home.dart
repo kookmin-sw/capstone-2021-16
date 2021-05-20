@@ -357,7 +357,7 @@ class _HomeState extends State<Home> {
         child: Row(
           children: [
             SizedBox(width: 5), //Padding이랑 같은 효과
-            Image.asset("assets/images/appbaricon.png"),
+            Image.asset("assets/images/appicon.png"),
             SizedBox(width: 10),
             Text(
               "알찬약속",
