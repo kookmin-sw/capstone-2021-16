@@ -50,7 +50,7 @@ class _LoginState extends State<Login> {
           MaterialPageRoute(builder: (context) => CreateAccount())); // 닉네임 저장하기
       userReference.doc(gCurrentUser.id).set({
         'id': gCurrentUser.id,
-        'profileNmae': gCurrentUser.displayName,
+        'profileName': gCurrentUser.displayName,
         'username': username,
         'url': gCurrentUser.photoUrl,
         'email': gCurrentUser.email,
