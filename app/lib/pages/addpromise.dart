@@ -101,7 +101,7 @@ class _AddPromiseState extends State<AddPromise> {
     );
   }
   final contentController = TextEditingController();
-  var contentController2 = TextEditingController();
+  final contentController2 = TextEditingController();
   final contentController3 = TextEditingController();
   final contentController4 = TextEditingController();
   final _category = ['스터디', '이벤트', '운동'];

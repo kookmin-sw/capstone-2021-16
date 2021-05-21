@@ -1,60 +1,38 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:io';
+
+import 'package:app/pages/friends_add.dart';
+import 'package:app/pages/login.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-//import 'package:english_words/english_words.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'message.dart';
 import 'notification.dart';
 
+GoogleSignIn _googleSignIn = GoogleSignIn();
+final userReference = FirebaseFirestore.instance.collection('users');
+// final _firestore = FirebaseFirestore.instance;
+
 class Friends extends StatefulWidget {
-  //Friends({Key key}) : super(key: key);
+  String currentUserUid;
+  Friends({Key key, @required this.currentUserUid}) : super(key: key);
 
   @override
-  _FriendsState createState() => _FriendsState();
+  _FriendsState createState() => _FriendsState(currentUserUid);
 }
 
 class _FriendsState extends State<Friends> {
+  String currentUserUid;
+  _FriendsState(this.currentUserUid);
+  Map<String, dynamic> friends_datas;
   @override
-  /*Widget build(BuildContext context) {
-    return Scaffold(
-      body: Text("페이지"),
-    );
-  }*/
-
-  // db 정보 list 생성
-  static const String _title = 'Friend List';
-  static const List<String> _data = ['김현서', '이헌수', '이선용', '이주윤', '함석민'];
-
-  // 리스트 뷰 만들기
-  Widget _buildStaticListView() {
-    final already = _data.contains(context);
-    return ListView.builder(
-        itemCount: _data.length,
-        itemBuilder: (BuildContext context, int i) {
-          return ListTile(
-            title: Text(
-              _data[i],
-              style: TextStyle(fontSize: 20),
-            ),
-
-            //trailing: Icon(   // 하트 이모티콘
-            //already ? Icons.favorite :
-            //Icons.favorite_border,
-            //color: already ? Colors.red : null,
-            //),
-
-            /*onTap: () {
-              setState(() {
-                if(already) {
-                  _data.remove(context);
-                } else {
-                 //_data.add(context); // 에러뜸 왜 에러냐
-                }
-              });
-            },
-             */
-          );
-        });
+  void initState() {
+    super.initState();
+    currentUserUid = widget.currentUserUid; // 넘어온 uid 받기
+    print(currentUserUid);
   }
 
+  @override
   Widget _appbarWidget() {
     return AppBar(
       // AppBar
@@ -67,7 +45,7 @@ class _FriendsState extends State<Friends> {
         child: Row(
           children: [
             SizedBox(width: 5), //Padding이랑 같은 효과
-            Text("친구"),
+            Text("친구 목록"),
           ],
         ),
       ),
@@ -76,31 +54,84 @@ class _FriendsState extends State<Friends> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MessagesList()), // Move to Message
+                MaterialPageRoute(
+                    builder: (context) => NotesList()), // Move to Notice
               );
-            }, icon: Image.asset('assets/images/message.png')),
+            },
+            icon: Image.asset('assets/images/bell.png')),
         IconButton(
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => NotesList()), // Move to Notice
+                MaterialPageRoute(
+                    builder: (context) => FriendsAdd(currentUserUid: currentUserUid)), // Move to Notice
               );
-            }, icon: Image.asset('assets/images/bell.png'))
+            },
+            icon: Image.asset('assets/images/friendsadd.png'))
       ], // 가운데 이름
     );
   }
 
+  _createFriendList() {
+    return FutureBuilder(
+        future: userReference.doc(currentUserUid).get(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState != ConnectionState.done) {
+            return Center(child: CircularProgressIndicator()); //데이터가 안왔을때 로딩처리
+          }
+
+          if (snapshot.hasError) {
+            // 에러 로직처리
+
+            return Center(
+              child: Text("데이터 오류"),
+            );
+          }
+
+          if (snapshot.hasData) {
+            // 데이터가 있을 때만 데이터를 넘겨줌
+            DocumentSnapshot ds = snapshot.data;
+            friends_datas = ds.data();
+            print(friends_datas); // 데이터 받아오기
+            var friends_list= friends_datas['friends'];
+            return ListView.builder(
+                itemCount: friends_list.length,
+                itemBuilder: (BuildContext context, int index){
+                  return Column(
+                      children: <Widget>[
+                        Container(
+                          margin: EdgeInsets.only(top:10, left:30, right: 30),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 300,
+                                alignment: Alignment.centerLeft,
+                                child:TextButton(
+                                    child: Text('${friends_list[index]['profileName']}', textAlign: TextAlign.left),
+                                    style: TextButton.styleFrom(
+                                      textStyle: TextStyle(fontSize: 20),
+                                    )
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ]
+                  );
+                });
+          }
+
+          return Center(
+            child: Text("현재 등록된 친구가 없습니다."),
+          );
+        });
+  }
+
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primaryColor: Colors.white,
-      ),
-      title: _title,
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    return Scaffold(
         appBar: _appbarWidget(),
-        body: _buildStaticListView(),
-      ),
+        body: _createFriendList()
     );
   }
 }

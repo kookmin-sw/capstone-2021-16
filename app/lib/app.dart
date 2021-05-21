@@ -60,7 +60,7 @@ class _AppState extends State<App> {
         return Home(); // 홈 화면
         break;
       case 1:
-        return Friends(); // 친구 목록 페이지
+        return Friends(currentUserUid: _currentUserUid); // 친구 목록 페이지
         break;
       case 2:
         return AddPromise(); // 약속추가페이지
