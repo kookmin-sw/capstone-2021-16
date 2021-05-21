@@ -29,6 +29,7 @@ class _FriendsAddState extends State<FriendsAdd> {
   var user_profilename = "";
   var user_email = "";
   var user_name = "";
+  var user_url = "";
   Map<String, String> friend_inf;
   int count = 0;
 
@@ -49,6 +50,9 @@ class _FriendsAddState extends State<FriendsAdd> {
       });
       FirebaseFirestore.instance.collection("users").where("email", isEqualTo: search_string).get().then((QuerySnapshot ds){
         ds.docs.forEach((doc) => user_name = doc["username"]);
+      });
+      FirebaseFirestore.instance.collection("users").where("email", isEqualTo: search_string).get().then((QuerySnapshot ds){
+        ds.docs.forEach((doc) => user_url = doc["url"]);
       });
     });
   }
@@ -152,7 +156,7 @@ class _FriendsAddState extends State<FriendsAdd> {
                             FirebaseFirestore.instance.collection("users").doc(
                                 currentUserUid).update({
                               "friends": FieldValue.arrayUnion([
-                                {'id': user_id, 'profileName': user_profilename}
+                                {'id': user_id, 'profileName': user_profilename, 'url': user_url}
                               ])
                             });
                           }
