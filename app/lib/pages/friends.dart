@@ -105,9 +105,9 @@ class _FriendsState extends State<Friends> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Container(
-                                margin: EdgeInsets.only(left: 30, right: 30, top:10),
+                                margin: EdgeInsets.only(top:10, left:30, right: 20),
                                 child: Image.network(
-                                  ('${friends_list[index]['url']}'),
+                                '${friends_list[index]['url']}',
                                   width: 32,
                                   height: 32,
                                 ),
