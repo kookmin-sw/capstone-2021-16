@@ -29,7 +29,8 @@ class Prom {
   bool repeat = false; // 반복
   bool place = false; //장소 등록 여부
   var date; //날짜
-  Prom(this.promise_title, this.promise);
+  Prom(this.promise_title, this.promise, this.select_place, this.select_num);
+//, this.repeat, this.place, this.date);
   // , this.select_place, this.select_num, this.repeat, this.place, this.date
 }
 
@@ -330,7 +331,7 @@ class _AddPromiseState extends State<AddPromise> {
                 child: TextButton(
                     onPressed: () {
                       // final prom = Prom(doc['promise_title'], doc['promise']);
-                      _addProm(Prom(contentController.text, contentController2.text));
+                      _addProm(Prom(contentController.text, contentController2.text, contentController3.text, contentController4.text));
                     },
                     child: Text("약속 추가하기"),
                     style: TextButton.styleFrom(
@@ -343,7 +344,9 @@ class _AddPromiseState extends State<AddPromise> {
   void _addProm(Prom prom) {
     FirebaseFirestore.instance
         .collection('promises')
-        .add({'title': prom.promise_title, 'promise': prom.promise});
+        .add({'title': prom.promise_title, 'promise': prom.promise, 'select_place' : prom.select_place, 'num' : prom.select_num, 'repeat' : prom.repeat});
+      //, 'place' : prom.place, 'date' : prom.date});
+    //, this.select_place, this.select_num, this.repeat, this.place, this.date
 
   }
 }

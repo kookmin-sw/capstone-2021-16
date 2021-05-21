@@ -4,8 +4,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn _googleSignIn = new GoogleSignIn();
@@ -47,7 +50,7 @@ class _LoginState extends State<Login> {
           MaterialPageRoute(builder: (context) => CreateAccount())); // 닉네임 저장하기
       userReference.doc(gCurrentUser.id).set({
         'id': gCurrentUser.id,
-        'profileNmae': gCurrentUser.displayName,
+        'profileName': gCurrentUser.displayName,
         'username': username,
         'url': gCurrentUser.photoUrl,
         'email': gCurrentUser.email,
@@ -56,17 +59,26 @@ class _LoginState extends State<Login> {
   }
 
   Widget googleSignButton() {
-    return GestureDetector(
-      onTap: () {
-        print('구글 로그인 버튼');
-        signInWithGoogle();
-        // saveUserInfoToDatabase();
-      },
-      child: Text(
-        'Sign In With Google',
-        style: TextStyle(fontSize: 18, color: Colors.black),
-      ),
-    );
+    return Scaffold(
+        backgroundColor: Colors.grey[100],
+        body: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(width: 500),
+              SizedBox(height: 150),
+              Image.asset(
+                'assets/images/loginappicon.png',
+                fit: BoxFit.fill,
+                height: 180,
+              ),
+              SizedBox(height: 80),
+              GoogleSignInButton(
+                  onPressed: () {
+                    signInWithGoogle();
+                  }
+              )
+            ]
+        ));
   }
 
   @override
