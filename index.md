@@ -50,7 +50,7 @@ Today, we are going through a lack of communication due to the noncontact era. T
 
 ### 3. 소개 영상
 
-<iframe width="640" height="360" src="https://www.youtube.com/watch?v=3CJT4bgiWSo" frameborder="0" gesture="media" allowfullscreen=""></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3CJT4bgiWSo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <br>
 <br>
