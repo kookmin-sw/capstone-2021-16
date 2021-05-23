@@ -57,8 +57,7 @@ Today, we are going through a lack of communication due to the noncontact era. T
 <br>
 
 ### 3. 소개 영상
-
-프로젝트 소개하는 영상을 추가하세요
+<iframe width="640" height="360" src="https://www.youtube.com/watch?v=3CJT4bgiWSo" frameborder="0" gesture="media" allowfullscreen=""></iframe>
 
 <br>
 <br>
